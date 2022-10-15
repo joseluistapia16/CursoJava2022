@@ -20,7 +20,7 @@ import java.util.Scanner;
 //hola soy jordan.
 //hola soy franklin riofrio.
 // HOLA SOY YO DE NUEVO JORDAN :)
-// hola soy jesus por siacaso :3
+// hola soy jesus por siacaso :3 wiiiiii si me salio 
 /**
  *
  * @author Usuario
