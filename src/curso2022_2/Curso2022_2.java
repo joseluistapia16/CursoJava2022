@@ -19,6 +19,7 @@ import java.util.Scanner;
 //Hola soy Isaac.
 //hola soy jordan.
 //hola soy franklin.
+
 /**
  *
  * @author Usuario
@@ -216,6 +217,8 @@ public class Curso2022_2 {
         System.out.println(obj1.getData());
         var obj2 = new Persona("039386443", "MARIA JOSE", "DUARTE");
         System.out.println(obj2.getData());
-        
+        //hola soy Alam.
+        var obj3 = new Persona("2456953690", "DANNY E", "TOLEDO");
+        System.out.println(obj3.getData());        
     }
 }
