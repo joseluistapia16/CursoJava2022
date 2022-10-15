@@ -18,6 +18,7 @@ import java.util.Scanner;
 // Hola soy Jose , soy de tu equipo.
 //Hola soy Isaac.
 //hola soy jordan.
+//hola soy franklin.
 /**
  *
  * @author Usuario
