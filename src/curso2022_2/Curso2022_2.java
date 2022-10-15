@@ -236,5 +236,12 @@ public class Curso2022_2 {
         obj4.setApellido("MARMOL");
         obj4.setSueldo(900.86);
         System.out.println(obj4.getData());
+        
+        var obj5 = new Persona();
+        obj5.setCedula("0476589478");
+        obj5.setNombre("Piero");
+        obj5.setApellido("Fernandez");
+        obj5.setSueldo(2000.75);
+        System.out.println(obj5.getData());
     }
 }
