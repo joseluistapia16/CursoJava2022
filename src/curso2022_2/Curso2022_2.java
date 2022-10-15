@@ -15,8 +15,12 @@ import java.util.Map.Entry;
 import java.util.Scanner;
 
 //Hola mundo soy Andy PILAY
-// Hola
-// Hola soy Jose , soy de tu equipo.
+//Soy Jose
+//Hola soy Isaac.
+//hola soy jordan.
+//hola soy franklin riofrio.
+// HOLA SOY YO DE NUEVO JORDAN :)
+// hola soy jesus por siacaso :3 wiiiiii si me salio 
 
 /**
  *
@@ -215,6 +219,9 @@ public class Curso2022_2 {
         System.out.println(obj1.getData());
         var obj2 = new Persona("039386443", "MARIA JOSE", "DUARTE");
         System.out.println(obj2.getData());
-        
+        //hola soy Alam.
+        var obj3 = new Persona("2456953690", "DANNY E", "TOLEDO");
+        obj3.setSueldo(1500.56);
+        System.out.println(obj3.getData());        
     }
 }
