@@ -24,6 +24,7 @@ import java.util.Scanner;
 // hola soy jesus por siacaso :3 wiiiiii si me salio 
 // hola soy franklin de nuevo
 //Hi soy Paulette <3
+// Hello ingrese obj3 y obj4 - soy Alam
 
 /**
  *
@@ -222,9 +223,18 @@ public class Curso2022_2 {
         System.out.println(obj1.getData());
         var obj2 = new Persona("039386443", "MARIA JOSE", "DUARTE");
         System.out.println(obj2.getData());
+        
         //hola soy Alam.
+        
         var obj3 = new Persona("2456953690", "DANNY E", "TOLEDO");
         obj3.setSueldo(1500.56);
-        System.out.println(obj3.getData());        
+        System.out.println(obj3.getData());   
+        
+        var obj4 = new Persona();
+        obj4.setCedula("1307654321");
+        obj4.setNombre("PABLO");
+        obj4.setApellido("MARMOL");
+        obj4.setSueldo(900.86);
+        System.out.println(obj4.getData());
     }
 }
