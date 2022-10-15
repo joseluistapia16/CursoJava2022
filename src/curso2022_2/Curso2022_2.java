@@ -219,6 +219,7 @@ public class Curso2022_2 {
         System.out.println(obj2.getData());
         //hola soy Alam.
         var obj3 = new Persona("2456953690", "DANNY E", "TOLEDO");
+        obj3.setSueldo(1500.56);
         System.out.println(obj3.getData());        
     }
 }
