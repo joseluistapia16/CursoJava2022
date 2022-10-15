@@ -16,8 +16,7 @@ import java.util.Scanner;
 
 //Hola mundo soy Andy PILAY
 // Hola soy Jose , soy de tu equipo.
-//Hola soy Isaac.
-//hola soy jordan.
+
 /**
  *
  * @author Usuario
