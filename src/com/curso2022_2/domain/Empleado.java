@@ -5,19 +5,22 @@
  */
 package com.curso2022_2.domain;
 
+import com.curso2022_2.interfaces.Methods;
+import java.util.List;
+
 /**
  *
  * @author josel
  */
-public class Empleado extends Persona{
-    
+public class Empleado extends Persona implements Methods{
+
     private String area;
     private String jornada;
 
     public Empleado() {
     }
 
-    public Empleado(String cedula, String nombre, String apellido, Double sueldo,String area, String jornada) {
+    public Empleado(String cedula, String nombre, String apellido, Double sueldo, String area, String jornada) {
         super(cedula, nombre, apellido, sueldo);
         this.area = area;
         this.jornada = jornada;
@@ -41,11 +44,17 @@ public class Empleado extends Persona{
 
     @Override
     public String getData() {
-        return super.getData()+" "+getArea()+" "+getJornada();
+        return super.getData() + " " + getArea() + " " + getJornada();
     }
-    
-    
-    
-    
-    
+
+    @Override
+    public String concat(List<String> lista) {
+        var msg = "";
+        for (int i = 0; i < lista.size(); i++) {
+            msg = msg + lista.get(i) + " ";
+        }
+        return msg;
+
+    }
+
 }

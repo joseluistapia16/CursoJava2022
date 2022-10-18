@@ -271,6 +271,10 @@ public class Curso2022_2 {
         System.out.println(obj3.getData());
         var obj4 = new Empleado("039386443", "MARIA JOSE", "ESCOBEDO PEÑA", 700.0, "CONTABILIDAD", "MATUTINA");
         System.out.println(obj4.getData());//bien
+        var lista = Arrays.asList("C++","Java","Python","PHP","Kotlin");
+        var msg = obj4.concat(lista);
+        System.out.println(msg);
+                
     }
 
 }

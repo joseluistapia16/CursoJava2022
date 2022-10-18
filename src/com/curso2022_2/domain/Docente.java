@@ -5,11 +5,14 @@
  */
 package com.curso2022_2.domain;
 
+import com.curso2022_2.interfaces.Methods;
+import java.util.List;
+
 /**
  *
  * @author josel
  */
-public class Docente extends Persona{
+public class Docente extends Persona implements Methods{
     
     private int horas;
     private String gestoria;
@@ -43,6 +46,16 @@ public class Docente extends Persona{
     @Override
     public String getData() {
         return super.getData()+" "+getHoras()+" "+getGestoria(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String concat(List<String> lista) {
+        var msg ="";
+        for (int i = 0; i < lista.size(); i++) {
+            msg= msg + lista.get(i)+" ";
+        }
+        return msg;
+       
     }
     
     
