@@ -264,7 +264,7 @@ public class Curso2022_2 {
         obj2.setApellido("MARMOL");
         obj2.setSueldo(900.86);
         obj2.setArea("SISTEMAS");
-        obj2.setJornada("NOCTURNA");
+        obj2.setJornada("NOCTURNA");  
         System.out.println(obj2.getData());
         var obj3 = new Docente("039386443", "HOMERO MIGUEL", "MACIAS DUARTE", 900.0, 4, "VINCULACION");
         System.out.println(obj3.getData());
