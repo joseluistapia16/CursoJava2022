@@ -4,6 +4,8 @@
  */
 package curso2022_2;
 
+import com.curso2022_2.domain.Docente;
+import com.curso2022_2.domain.Empleado;
 import com.curso2022_2.domain.Persona;
 import com.curso2022_2.procesos.Procesos;
 import java.math.BigDecimal;
@@ -48,7 +50,7 @@ public class Curso2022_2 {
         numero = 30;
         System.out.println(nombre+numero);
          */
-        eje12();
+        eje14();
     }
 
     private static void eje1() {
@@ -199,17 +201,18 @@ public class Curso2022_2 {
     }
 
     public static void eje11() {
-      HashMap<String,Integer>dic1= new HashMap<String,Integer>();
-      dic1.put("PORT", 3000);
-      dic1.put("Valor", 200);
-      dic1.put("mes", 10);
+        HashMap<String, Integer> dic1 = new HashMap<String, Integer>();
+        dic1.put("PORT", 3000);
+        dic1.put("Valor", 200);
+        dic1.put("mes", 10);
         System.out.println(dic1.get("mes"));
-      for(Entry<String,Integer> entry : dic1.entrySet()){
-          System.out.println(entry.getKey()+":"+entry.getValue());
-      }
+        for (Entry<String, Integer> entry : dic1.entrySet()) {
+            System.out.println(entry.getKey() + ":" + entry.getValue());
+        }
     }
-    
-    public static void eje12(){
+
+    public static void eje12() {
+        /*
         Persona obj = new Persona("1234567890", "JOSE LUIS", 
                 "LOPEZ CASTRO",
                 1200.0);
@@ -243,5 +246,26 @@ public class Curso2022_2 {
         obj5.setApellido("Fernandez");
         obj5.setSueldo(2000.75);
         System.out.println(obj5.getData());
+         */
     }
+
+    public static void eje14() {
+        var obj1 = new Docente();
+        obj1.setCedula("1234567890");
+        obj1.setNombre("Piero");
+        obj1.setApellido("Fernandez");
+        obj1.setSueldo(2000.75);
+        obj1.setHoras(8);
+        obj1.setGestoria("PPP");
+        System.out.println(obj1.getData());
+        var obj2 = new Empleado();
+        obj2.setCedula("0987654321");
+        obj2.setNombre("PABLO");
+        obj2.setApellido("MARMOL");
+        obj2.setSueldo(900.86);
+        obj2.setArea("SISTEMAS");
+        obj2.setJornada("NOCTURNA");
+        System.out.println(obj2.getData());
+    }
+
 }
