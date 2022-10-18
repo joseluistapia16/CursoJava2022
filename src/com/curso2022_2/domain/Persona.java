@@ -8,7 +8,7 @@ package com.curso2022_2.domain;
  *
  * @author Usuario
  */
-public class Persona {
+abstract public class Persona {
 
     private String cedula;
     private String nombre;

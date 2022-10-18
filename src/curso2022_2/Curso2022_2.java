@@ -4,7 +4,10 @@
  */
 package curso2022_2;
 
+import com.curso2022_2.domain.Docente;
+import com.curso2022_2.domain.Empleado;
 import com.curso2022_2.domain.Persona;
+
 import com.curso2022_2.procesos.Procesos;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -37,7 +40,7 @@ public class Curso2022_2 {
     static int numero;
 
     public static void main(String[] args) {
-        Procesos obj = new Procesos();
+        //lambda1();
 
         //System.out.println(obj.mensaje("Curso java"));
         /*
@@ -48,7 +51,26 @@ public class Curso2022_2 {
         numero = 30;
         System.out.println(nombre+numero);
          */
-        eje12();
+        eje14();
+    }
+
+    public static void lambda1() {
+        /*
+        var f = new Persona("1234", "Carlos", "Siguencia");
+        var f2 = new Persona("12345", "Luis", "Torres");
+        var f3 = new Persona("123456", "Jorge", "Lino");
+        var f4 = new Persona("1234567", "Lina", "Perez");
+        List<Persona> lista = new ArrayList<>();
+        lista.add(f);
+        lista.add(f2);
+        lista.add(f3);
+        lista.add(f4);
+        Persona result
+                = lista.stream() // desarrolla  la busqueda
+                        .filter(elemento -> "Lino".equals(elemento.getApellido())) // filtra el valor a buscar
+                        .findFirst().get();  // obtiene el primer valor
+        System.out.println(result.getData());
+         */
     }
 
     private static void eje1() {
@@ -199,49 +221,96 @@ public class Curso2022_2 {
     }
 
     public static void eje11() {
-      HashMap<String,Integer>dic1= new HashMap<String,Integer>();
-      dic1.put("PORT", 3000);
-      dic1.put("Valor", 200);
-      dic1.put("mes", 10);
+        HashMap<String, Integer> dic1 = new HashMap<String, Integer>();
+        dic1.put("PORT", 3000);
+        dic1.put("Valor", 200);
+        dic1.put("mes", 10);
         System.out.println(dic1.get("mes"));
-      for(Entry<String,Integer> entry : dic1.entrySet()){
-          System.out.println(entry.getKey()+":"+entry.getValue());
-      }
+        for (Entry<String, Integer> entry : dic1.entrySet()) {
+            System.out.println(entry.getKey() + ":" + entry.getValue());
+        }
     }
-    
-    public static void eje12(){
-        Persona obj = new Persona("1234567890", "JOSE LUIS", 
-                "LOPEZ CASTRO",
-                1200.0);
-       obj.setNombre("Carlos Ronald");
-        System.out.println(obj.getData());
-        var obj1 = new Persona();
-        obj1.setCedula("0987654321");
-        obj1.setNombre("CARLOS ADOLFO");
-        obj1.setApellido("LOOR  JIMENEZ");
-        obj1.setSueldo(2000.56);
+
+    public static void eje12() {
+//        Persona obj = new Persona("1234567890", "JOSE LUIS",
+//                "LOPEZ CASTRO",
+//                1200.0);
+//        obj.setNombre("Carlos Ronald");
+//        System.out.println(obj.getData());
+//        var obj1 = new Persona();
+//        obj1.setCedula("0987654321");
+//        obj1.setNombre("CARLOS ADOLFO");
+//        obj1.setApellido("LOOR  JIMENEZ");
+//        obj1.setSueldo(2000.56);
+//        System.out.println(obj1.getData());
+//        var obj2 = new Persona("039386443", "MARIA JOSE", "DUARTE");
+//        System.out.println(obj2.getData());
+//
+//        //hola soy Alam.
+//        var obj3 = new Persona("2456953690", "DANNY E", "TOLEDO");
+//        obj3.setSueldo(1500.56);
+//        System.out.println(obj3.getData());
+//
+//        var obj4 = new Persona();
+//        obj4.setCedula("1307654321");
+//        obj4.setNombre("PABLO");
+//        obj4.setApellido("MARMOL");
+//        obj4.setSueldo(900.86);
+//        System.out.println(obj4.getData());
+//
+//        var obj5 = new Persona();
+//        obj5.setCedula("0476589478");
+//        obj5.setNombre("Piero");
+//        obj5.setApellido("Fernandez");
+//        obj5.setSueldo(2000.75);
+//        System.out.println(obj5.getData());
+    }
+
+    public static String getEtapa(int edad) {
+        var res = (edad >= 0 && edad < 11) ? "¡Infante!"
+                : (edad > 10 && edad < 18) ? "¡Adolescente!"
+                        : (edad > 17 && edad < 26) ? "¡Joven!"
+                                : (edad > 25 && edad < 65) ? "¡Adulto!"
+                                        : (edad > 64) ? "Adulto Mayor!"
+                                                : "Valor erroneo!";
+        return res;
+    }
+
+    public static String getEstado(double promedio) {
+        var estado = (promedio < 7 && promedio >= 0) ? "REPROBADO"
+                : (promedio >= 7 && promedio <= 10) ? "APROBADO"
+                        : "VALOR INVALIDO";
+        return estado;
+    }
+
+    private static void eje13() {
+        var obj1 = new Empleado("1234567890", "RONALD LUIS",
+                "CARRASCO PEREZ", 600.98, "NOCTURNO", "SECRETARIO");
+        obj1.setTurno("MATUTINO");
         System.out.println(obj1.getData());
-        var obj2 = new Persona("039386443", "MARIA JOSE", "DUARTE");
-        System.out.println(obj2.getData());
-        
-        //hola soy Alam.
-        
-        var obj3 = new Persona("2456953690", "DANNY E", "TOLEDO");
-        obj3.setSueldo(1500.56);
-        System.out.println(obj3.getData());   
-        
-        var obj4 = new Persona();
-        obj4.setCedula("1307654321");
-        obj4.setNombre("PABLO");
-        obj4.setApellido("MARMOL");
-        obj4.setSueldo(900.86);
-        System.out.println(obj4.getData());
-        
-        var obj5 = new Persona();
-        obj5.setCedula("0476589478");
-        obj5.setNombre("Piero");
-        obj5.setApellido("Fernandez");
-        obj5.setSueldo(2000.75);
-        System.out.println(obj5.getData());
+        var obj2 = new Empleado();
+        obj2.setCedula("0987654321");
+        obj2.setNombre("CARLOS LUIS");
+        obj2.setApellido("RUIZ VELEZ");
+        obj2.setSueldo(1000.90);
+        obj2.setTurno("VESPERTINO");
+        obj2.setDepartamento("CONTABILIDAD");
+        System.out.println("obj2 " + obj2.getData());
+        // estudiante
+        Docente ob3 = new Docente("89898", "Luis miguel",
+                "Perez Ruiz", 1000.90, 40, "PPP");
+        System.out.println(ob3.getData());
+
     }
+
+    private static void eje14() {
+        List<String> lista = Arrays.asList("C++", "JAVA", "PYTHON",
+                "PHP", "KOTLIN");
+        Docente ob3 = new Docente("89898", "Luis miguel",
+                "Perez Ruiz", 1000.90, 40, "PPP");
+        System.out.println(ob3.getData());
+        var msg = ob3.concatenar(lista);
+        System.out.println(msg);
+    }
+
 }
