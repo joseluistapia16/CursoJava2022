@@ -270,7 +270,7 @@ public class Curso2022_2 {
         var obj3 = new Docente("039386443", "HOMERO MIGUEL", "MACIAS DUARTE", 900.0, 4, "VINCULACION");
         System.out.println(obj3.getData());
         var obj4 = new Empleado("039386443", "MARIA JOSE", "ESCOBEDO PEÑA", 700.0, "CONTABILIDAD", "MATUTINA");
-        System.out.println(obj4.getData());
+        System.out.println(obj4.getData());//bien
     }
 
 }
