@@ -7,6 +7,7 @@ package curso2022_2;
 import com.curso2022_2.domain.Docente;
 import com.curso2022_2.domain.Empleado;
 import com.curso2022_2.domain.Persona;
+import com.curso2022_2.procesos.Inputs;
 import com.curso2022_2.procesos.Procesos;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -35,6 +36,8 @@ import java.util.Scanner;
  */
 public class Curso2022_2 {
 
+    static Inputs inp = new Inputs();
+
     static Scanner lec = new Scanner(System.in);
     static String nombre;
     static int numero;
@@ -51,7 +54,7 @@ public class Curso2022_2 {
         numero = 30;
         System.out.println(nombre+numero);
          */
-        eje14();
+        eje16();
     }
 
     private static void eje1() {
@@ -265,16 +268,64 @@ public class Curso2022_2 {
         obj2.setApellido("MARMOL");
         obj2.setSueldo(900.86);
         obj2.setArea("SISTEMAS");
-        obj2.setJornada("NOCTURNA");  
+        obj2.setJornada("NOCTURNA");
         System.out.println(obj2.getData());
         var obj3 = new Docente("039386443", "HOMERO MIGUEL", "MACIAS DUARTE", 900.0, 4, "VINCULACION");
         System.out.println(obj3.getData());
         var obj4 = new Empleado("039386443", "MARIA JOSE", "ESCOBEDO PEÑA", 700.0, "CONTABILIDAD", "MATUTINA");
         System.out.println(obj4.getData());//bien
-        var lista = Arrays.asList("C++","Java","Python","PHP","Kotlin");
+        var lista = Arrays.asList("C++", "Java", "Python", "PHP", "Kotlin");
         var msg = obj4.concat(lista);
         System.out.println(msg);
-                
+
+    }
+
+    public static void eje15() {
+        Docente docentes[] = new Docente[5];
+        var obj1 = new Docente("12345", "MICHELLE", "LEON", 900.0, 10, "PPP");
+        var obj2 = new Docente("09876", "LEONARDO", "RUIZ", 900.0, 10, "VINCULACION");
+        var obj3 = new Docente("11223", "KEVIN", "LOPEZ", 900.0, 10, "INGLES");
+        var obj4 = new Docente("11111", "RICARDO", "VANEGAS", 900.0, 10, "VINCULACION");
+        var obj5 = new Docente("22222", "LAURA", "SOLIS", 900.0, 10, "INGLES");
+        docentes[0] = obj1;
+        docentes[1] = obj2;
+        docentes[2] = obj3;
+        docentes[3] = obj4;
+        docentes[4] = obj5;
+        for (int i = 0; i < docentes.length; i++) {
+            System.out.println(docentes[i].getData());
+        }
+        System.out.println("**********");
+        docentes[3] = new Docente("555555", "LOURDES", "PEÑA", 1900.0, 10, "VICERECTOR");
+        for (int i = 0; i < docentes.length; i++) {
+            System.out.println(docentes[i].getData());
+        }
+    }
+
+    public static void eje16() {
+        var lista = new ArrayList<Empleado>();
+        for (int i = 0; i < 3; i++) {
+            System.out.println("Ingreso #"+(i+1));
+            var cedula = inp.inputStr("Cedula:");
+            var nombre = inp.inputStr("Nombres:");
+            var apellido = inp.inputStr("Apellidos:");
+            var sueldo = inp.inputDouble("Sueldo:");
+            var turno = inp.inputStr("Turno:");
+            var depar = inp.inputStr("Departamento:");
+            var obj = new Empleado(cedula, nombre, apellido,
+                    sueldo,  turno,depar);
+            lista.add(obj);
+        }      
+        for (int i = 0; i < lista.size(); i++) {
+            System.out.println(lista.get(i).getInfoData());
+        }
+    }
+
+    public static void eje17() {
+        var num = inp.inputInt("ingrese un entero:");
+        var nom = inp.inputStr("Ingrese su nombre:");
+        var sueldo = inp.inputDouble("Sueldo:");
+        System.out.println(nom + " " + sueldo);
     }
 
 }

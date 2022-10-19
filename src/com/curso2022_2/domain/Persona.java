@@ -17,8 +17,7 @@ abstract public class Persona {
 
     public Persona() {
     }
-    
-    
+
     public Persona(String cedula, String nombre, String apellido, Double sueldo) {
         this.cedula = cedula;
         this.nombre = nombre;
@@ -31,8 +30,6 @@ abstract public class Persona {
         this.nombre = nombre;
         this.apellido = apellido;
     }
-    
-    
 
     public String getCedula() {
         return cedula;
@@ -65,13 +62,22 @@ abstract public class Persona {
     public void setSueldo(Double sueldo) {
         this.sueldo = sueldo;
     }
- 
+
     public String getData() {
         // cambio
-        if (this.sueldo==null){
-            this.sueldo=0.0;
+        if (this.sueldo == null) {
+            this.sueldo = 0.0;
         }
-        return this.cedula + " " + this.nombre + " " + 
-                this.apellido + " " + this.sueldo;
+        return this.cedula + " " + this.nombre + " "
+                + this.apellido + " " + this.sueldo;
+    }
+
+    public String getInfoData() {
+        // cambio
+        if (this.sueldo == null) {
+            this.sueldo = 0.0;
+        }
+        return "Cedula:"+this.cedula + "\nNombres:" + this.nombre + "\nApellidos:"
+                + this.apellido + "\nSueldo:" + this.sueldo;
     }
 }

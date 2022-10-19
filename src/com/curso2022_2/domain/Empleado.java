@@ -57,4 +57,11 @@ public class Empleado extends Persona implements Methods{
 
     }
 
+    @Override
+    public String getInfoData() {
+        return super.getInfoData()+"\nArea:"+getArea()+"\nTurno:"+getJornada(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+
 }
