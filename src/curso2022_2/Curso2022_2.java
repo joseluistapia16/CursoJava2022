@@ -9,6 +9,7 @@ import com.curso2022_2.domain.Empleado;
 import com.curso2022_2.domain.Persona;
 import com.curso2022_2.procesos.Inputs;
 import com.curso2022_2.procesos.Procesos;
+import com.curso2022_2.proyecto1.impl.Run;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,7 +44,7 @@ public class Curso2022_2 {
     static int numero;
 
     public static void main(String[] args) {
-        Procesos obj = new Procesos();
+        //Procesos obj = new Procesos();
 
         //System.out.println(obj.mensaje("Curso java"));
         /*
@@ -54,7 +55,9 @@ public class Curso2022_2 {
         numero = 30;
         System.out.println(nombre+numero);
          */
-        eje16();
+        //eje18();
+        var run = new Run();
+        run.inicio();
     }
 
     private static void eje1() {
@@ -326,6 +329,25 @@ public class Curso2022_2 {
         var nom = inp.inputStr("Ingrese su nombre:");
         var sueldo = inp.inputDouble("Sueldo:");
         System.out.println(nom + " " + sueldo);
+    }
+    
+    public static void eje18(){
+        var numero = inp.inputInt("Opcion:");
+        switch(numero){
+            case 1:
+                   System.out.println("JAVA");
+                   break;     
+            case 2:
+                  System.out.println("PYTHON");
+                   break;
+            case 3:
+                  System.out.println("C++");
+                   break;
+           
+            default : System.out.println("Nada");
+        }
+        
+        
     }
 
 }

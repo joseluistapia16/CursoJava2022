@@ -4,6 +4,9 @@
  */
 package com.curso2022_2.procesos;
 
+import com.curso2022_2.domain.Empleado;
+import java.util.List;
+
 /**
  *
  * @author Usuario
@@ -13,6 +16,24 @@ public class Procesos {
     
     public String mensaje(String msg){
         return msg;
+    }
+    
+    public Empleado getOne(String id,List<Empleado> lista){
+        Empleado obj = null;
+        for (int i = 0; i < lista.size(); i++) {
+            if (id.equals(lista.get(i).getCedula())) {
+                 obj= lista.get(i);
+                 break;
+            }
+        }      
+        return obj;  
+    }
+    
+    public Empleado getOneL(String id, List<Empleado> lista){
+        Empleado obj = lista.stream()
+                       .filter(elem->id.equals(elem.getCedula()))
+                       .findFirst().get();       
+        return obj;
     }
 
     public static double getPromedio(double n1, double n2, double n3) {
