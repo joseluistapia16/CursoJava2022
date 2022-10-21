@@ -20,7 +20,7 @@ public interface ImplEmplado {
 
     public String delete(Empleado obj);
 
-    public List<Empleado> getAll(Empleado obj);
+    public List<Empleado> getAll();
 
     public Empleado getOne(String id);
 
