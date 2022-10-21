@@ -31,6 +31,14 @@ abstract public class Persona {
         this.apellido = apellido;
     }
 
+    public Persona(String nombre, String apellido, Double sueldo) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.sueldo = sueldo;
+    }
+    
+    
+
     public String getCedula() {
         return cedula;
     }

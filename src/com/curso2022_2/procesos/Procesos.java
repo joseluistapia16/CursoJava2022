@@ -18,11 +18,11 @@ public class Procesos {
         return msg;
     }
     
-    public Empleado getOne(String id,List<Empleado> lista){
+    public Empleado getOne(String id,List<Empleado> lista1){
         Empleado obj = null;
-        for (int i = 0; i < lista.size(); i++) {
-            if (id.equals(lista.get(i).getCedula())) {
-                 obj= lista.get(i);
+        for (int i = 0; i < lista1.size(); i++) {
+            if (id.equals(lista1.get(i).getCedula())) {
+                 obj= lista1.get(i);
                  break;
             }
         }      
@@ -35,6 +35,18 @@ public class Procesos {
                        .findFirst().get();       
         return obj;
     }
+    
+    public int getPosition(String id,List<Empleado> lista ){
+        int pos = -1;
+        for (int i = 0; i < lista.size(); i++) {
+            if(id.equals(lista.get(i).getCedula())){
+                pos = i;
+                break;
+            }
+        }
+        return pos;
+    }
+    
 
     public static double getPromedio(double n1, double n2, double n3) {
         return (n1 + n2 + n3) / 3;

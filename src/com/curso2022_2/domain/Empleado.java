@@ -20,6 +20,16 @@ public class Empleado extends Persona implements Methods{
     public Empleado() {
     }
 
+    public Empleado(String area) {
+        this.area = area;
+    }
+
+    public Empleado(String nombre, String apellido, Double sueldo,String area, String jornada) {
+        super(nombre, apellido, sueldo);
+        this.area = area;
+        this.jornada = jornada;
+    }
+
     public Empleado(String cedula, String nombre, String apellido, Double sueldo, String area, String jornada) {
         super(cedula, nombre, apellido, sueldo);
         this.area = area;

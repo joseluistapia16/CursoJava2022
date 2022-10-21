@@ -44,6 +44,14 @@ public class Run {
                 consultar();
                 menu();
                 break;
+            case 3:
+                actualizar();
+                menu();
+                break;
+            case 4:
+                eliminar();
+                menu();
+                break;
             case 5:
                 listado();
                 menu();
@@ -64,17 +72,52 @@ public class Run {
         lista.add(obj);
         inp.inputStr("<Enter>para continuar...");
     }
-    
-    private void consultar(){
+
+    private void consultar() {
         System.out.println("Consulta de empleados");
         var id = inp.inputStr("Cedula:");
-        var obj= proc.getOneL(id, lista);
-        if(obj!=null){
+        var obj = proc.getOneL(id, lista);
+        if (obj != null) {
             System.out.println(obj.getInfoData());
-        }else{
+        } else {
             System.out.println("Cedula no existe!!");
         }
         inp.inputStr("<Enter>para continuar");
+    }
+
+    private void actualizar() {
+        System.out.println("Actualizacion de datos");
+        var id = inp.inputStr("Cedula:");
+        var pos = proc.getPosition(id, lista);
+        if (pos != -1) {
+            System.out.println(lista.get(pos).getInfoData());
+            var nombre = inp.inputStr("Nombres:");
+            var apellido = inp.inputStr("Apellidos:");
+            var sueldo = inp.inputDouble("Sueldo:");
+            var turno = inp.inputStr("Turno:");
+            var departamento = inp.inputStr("Departamento:");
+            var obj1 = new Empleado(nombre, apellido, sueldo, turno, departamento);
+            obj1.setCedula(id);
+            lista.set(pos, obj1);
+            System.out.println("Datos actualizados!");
+        } else {
+            System.out.println("Empleado no existe!");
+        }
+        inp.inputStr("<Enter>para continuar...");
+    }
+
+    private void eliminar() {
+        System.out.println("Eliminacion de Empleados");
+        var id = inp.inputStr("Cedula:");
+        var pos = proc.getPosition(id, lista);
+        if (pos > -1) {
+            System.out.println(lista.get(pos).getInfoData());
+            lista.remove(pos);
+            System.out.println("Datos eliminados!");
+        } else {
+            System.out.println("Empleado no existe!");
+        }
+        inp.inputStr("<Enter>para continuar...");
     }
 
     private void listado() {
