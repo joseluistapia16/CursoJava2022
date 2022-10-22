@@ -9,6 +9,7 @@ import com.curso2022_2.domain.Empleado;
 import com.curso2022_2.menu.Menu;
 import com.curso2022_2.procesos.Inputs;
 import com.curso2022_2.procesos.Procesos;
+import com.java2022_2.files.Archivo;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,12 +23,18 @@ public class Run {
     Inputs inp;
     Menu menu1;
     Procesos proc;
-
-    public void inicio() {
+    Archivo arch;
+    
+    public Run(){
         proc = new Procesos();
         inp = new Inputs();
+        arch = new Archivo();
         menu1 = new Menu();
-        lista = new ArrayList<>();
+        lista = arch.getAll();
+        
+    }
+
+    public void inicio() {
         menu();
     }
 
@@ -63,20 +70,27 @@ public class Run {
 
     private void registro() {
         var cedula = inp.inputStr("Cedula:");
+        lista = arch.getAll();
+        var ob = arch.getOne(cedula);
+        if (ob == null){
         var nombre = inp.inputStr("Nombres:");
         var apellido = inp.inputStr("Apellidos:");
         var sueldo = inp.inputDouble("Sueldo:");
         var turno = inp.inputStr("Turno:");
         var departamento = inp.inputStr("Departamento:");
         var obj = new Empleado(cedula, nombre, apellido, sueldo, turno, departamento);
-        lista.add(obj);
+        var msg = arch.create(obj);
+        System.out.println(msg);
+        }else {
+            System.out.println("Cedula ya existe!");
+        }
         inp.inputStr("<Enter>para continuar...");
     }
 
     private void consultar() {
         System.out.println("Consulta de empleados");
         var id = inp.inputStr("Cedula:");
-        var obj = proc.getOneL(id, lista);
+        var obj = arch.getOne(id);
         if (obj != null) {
             System.out.println(obj.getInfoData());
         } else {
@@ -86,6 +100,7 @@ public class Run {
     }
 
     private void actualizar() {
+        lista = arch.getAll();
         System.out.println("Actualizacion de datos");
         var id = inp.inputStr("Cedula:");
         var pos = proc.getPosition(id, lista);
@@ -98,8 +113,8 @@ public class Run {
             var departamento = inp.inputStr("Departamento:");
             var obj1 = new Empleado(nombre, apellido, sueldo, turno, departamento);
             obj1.setCedula(id);
-            lista.set(pos, obj1);
-            System.out.println("Datos actualizados!");
+            var msg = arch.update(obj1);
+            System.out.println(msg);
         } else {
             System.out.println("Empleado no existe!");
         }
@@ -110,17 +125,18 @@ public class Run {
         System.out.println("Eliminacion de Empleados");
         var id = inp.inputStr("Cedula:");
         var pos = proc.getPosition(id, lista);
-        if (pos > -1) {
+        if (pos != -1) {
             System.out.println(lista.get(pos).getInfoData());
-            lista.remove(pos);
-            System.out.println("Datos eliminados!");
-        } else {
-            System.out.println("Empleado no existe!");
+            var res = arch.delete(id);
+            System.out.println(res);
+        }else{
+            System.out.println("Cedula no existe!");
         }
         inp.inputStr("<Enter>para continuar...");
     }
 
     private void listado() {
+        lista = arch.getAll();
         System.out.println("Listado de empleados.");
         for (int i = 0; i < lista.size(); i++) {
             System.out.println(lista.get(i).getData());

@@ -18,7 +18,7 @@ public interface ImplEmplado {
 
     public String update(Empleado obj);
 
-    public String delete(Empleado obj);
+    public String delete(String id);
 
     public List<Empleado> getAll();
 
