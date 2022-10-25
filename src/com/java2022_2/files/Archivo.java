@@ -7,6 +7,7 @@ package com.java2022_2.files;
 
 import com.curso2022_2.domain.Empleado;
 import com.curso2022_2.interfaces.ImplEmplado;
+import com.curso2022_2.interfaces.ImplUsuario;
 import com.curso2022_2.procesos.Procesos;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -26,7 +27,7 @@ import java.util.List;
  */
 public class Archivo implements ImplEmplado {
 
-    String ruta1 = "C:\\Users\\user\\Documents\\NetBeansProjects\\CursoJava2022\\empleados.json";
+    String ruta1 = "C:\\Users\\sopor\\OneDrive\\Documentos\\NetBeansProjects\\Curso2022_2\\empleados.json";
     List<Empleado> lista_emp;
     Procesos proc;
 
