@@ -5,6 +5,7 @@
 package com.curso2022_2.procesos;
 
 import com.curso2022_2.domain.Empleado;
+import com.curso2022_2.domain.Usuario;
 import java.util.List;
 
 /**
@@ -12,41 +13,48 @@ import java.util.List;
  * @author Usuario
  */
 public class Procesos {
-    public  String valor;
-    
-    public String mensaje(String msg){
+
+    public String valor;
+
+    public String mensaje(String msg) {
         return msg;
     }
-    
-    public Empleado getOne(String id,List<Empleado> lista1){
+
+    public Empleado getOne(String id, List<Empleado> lista1) {
         Empleado obj = null;
         for (int i = 0; i < lista1.size(); i++) {
             if (id.equals(lista1.get(i).getCedula())) {
-                 obj= lista1.get(i);
-                 break;
+                obj = lista1.get(i);
+                break;
             }
-        }      
-        return obj;  
-    }
-    
-    public Empleado getOneL(String id, List<Empleado> lista){
-        Empleado obj = lista.stream()
-                       .filter(elem->id.equals(elem.getCedula()))
-                       .findFirst().get();       
+        }
         return obj;
     }
-    
-    public int getPosition(String id,List<Empleado> lista ){
+
+    public Empleado getOneL(String id, List<Empleado> lista) {
+        Empleado obj = lista.stream()
+                .filter(elem -> id.equals(elem.getCedula()))
+                .findFirst().get();
+        return obj;
+    }
+
+    public int getPosition(String id, List<Empleado> lista) {
         int pos = -1;
         for (int i = 0; i < lista.size(); i++) {
-            if(id.equals(lista.get(i).getCedula())){
+            if (id.equals(lista.get(i).getCedula())) {
                 pos = i;
                 break;
             }
         }
         return pos;
     }
-    
+
+    public Usuario getUser(String user, List<Usuario> lista) {
+        Usuario obj = lista.stream()
+                .filter(elem -> user.equals(elem.getUsuario()))
+                .findFirst().get();
+        return obj;
+    }
 
     public static double getPromedio(double n1, double n2, double n3) {
         return (n1 + n2 + n3) / 3;
@@ -97,16 +105,16 @@ public class Procesos {
     public static double getTotal(double subtotal, double iva) {
         return (subtotal + iva);
     }
-    
-    public static boolean getValidate(String arr[],String valor){
-        var res=false;
+
+    public static boolean getValidate(String arr[], String valor) {
+        var res = false;
         for (int i = 0; i < arr.length; i++) {
             if (valor.equals(arr[i])) {
-                res=true;
+                res = true;
                 break;
             }
         }
-        return res;     
+        return res;
     }
-    
+
 }

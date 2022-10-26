@@ -4,6 +4,7 @@
  */
 package com.curso2022_2.views;
 
+import com.java2022_2.files.UsersFiles;
 import java.awt.Frame;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -13,13 +14,14 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class Login extends JFrame {
-
+    UsersFiles crud =null;
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
         setLocationRelativeTo(null);
+        crud = new UsersFiles();
     }
 
     /**
@@ -33,7 +35,7 @@ public class Login extends JFrame {
 
         eti1 = new javax.swing.JLabel();
         eti2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        usuario = new javax.swing.JTextField();
         password = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -48,8 +50,8 @@ public class Login extends JFrame {
         eti2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         eti2.setText("Password");
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        usuario.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        usuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         password.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
 
@@ -98,7 +100,7 @@ public class Login extends JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(156, 156, 156)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
+                            .addComponent(usuario)
                             .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -121,7 +123,7 @@ public class Login extends JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(eti1)
                 .addGap(33, 33, 33)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(eti2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -151,8 +153,13 @@ public class Login extends JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      // JOptionPane.showInputDialog("Bienvenido a Java Swing");
-      JOptionPane.showMessageDialog(null, "Bienvenidos a Java Swing");
+      var obj = crud.getLogin(usuario.getText(), password.getText());
+        if (obj==null) {
+              JOptionPane.showMessageDialog(null, "Credenciales invalidas!!");
+        }else{
+              JOptionPane.showMessageDialog(null, "Bienvenidos a Java Swing");
+        }
+  
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -201,8 +208,8 @@ public class Login extends JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JCheckBox mostrar;
     private javax.swing.JPasswordField password;
+    private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
 }

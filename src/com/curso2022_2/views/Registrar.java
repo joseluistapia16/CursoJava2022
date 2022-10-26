@@ -4,11 +4,17 @@
  */
 package com.curso2022_2.views;
 
+import com.curso2022_2.domain.Usuario;
+import com.java2022_2.files.UsersFiles;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Usuario
  */
 public class Registrar extends javax.swing.JDialog {
+
+    UsersFiles crud = null;
 
     /**
      * Creates new form Registrar
@@ -18,6 +24,7 @@ public class Registrar extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Registro de Usuarios.");
+        crud = new UsersFiles();
     }
 
     /**
@@ -80,6 +87,11 @@ public class Registrar extends javax.swing.JDialog {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jButton1.setText("Grabar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jButton2.setText("Cancelar");
@@ -179,8 +191,8 @@ public class Registrar extends javax.swing.JDialog {
 
     private void mostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarActionPerformed
         if (mostrar.isSelected()) {
-            password.setEchoChar((char)0);
-        }else{
+            password.setEchoChar((char) 0);
+        } else {
             password.setEchoChar('*');
         }
     }//GEN-LAST:event_mostrarActionPerformed
@@ -193,7 +205,18 @@ public class Registrar extends javax.swing.JDialog {
         vaciar();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void vaciar(){
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        var obj = crud.getOne(usuario.getText());
+        if (obj == null) {
+            grabar();
+        }else{
+            JOptionPane.showMessageDialog(null,"Usuario "+usuario.getText()+" ya existe!");
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void vaciar() {
         usuario.setText(null);
         password.setText(null);
         nombre.setText(null);
@@ -201,8 +224,16 @@ public class Registrar extends javax.swing.JDialog {
         correo.setText(null);
         mostrar.setSelected(false);
     }
-    
-    
+    private void grabar() {
+        var obj = new Usuario(usuario.getText(), password.getText(),
+                nombre.getText(), apellido.getText(), correo.getText());
+        var msg = crud.create(obj);
+        if (!"Los datos no fueron guardados!".equals(msg)) {
+            vaciar();
+        }
+        JOptionPane.showMessageDialog(null, msg);
+    }
+
     /**
      * @param args the command line arguments
      */
