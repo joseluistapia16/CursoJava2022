@@ -14,6 +14,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,14 +23,17 @@ import java.util.List;
  *
  * @author FRANKLIN RV
  */
-public class Archivos implements ImplEmpleado{
-    String ruta = "C:\\Users\\Gigabyte\\Desktop\\ESTUDIOS DE FRANKLIN\\Java\\java\\empleados.json";
+public class Archivos implements ImplEmpleado {
+
+    String ruta = "C:\\Users\\LAPTOP-HP\\Documents\\NetBeansProjects\\java\\prueba.json";
     List<Empleado> lista_emp;
     Procesos proc;
- public Archivos(){
-     lista_emp = new ArrayList<>();
-     proc = new Procesos();
- }
+
+    public Archivos() {
+        lista_emp = new ArrayList<>();
+        proc = new Procesos();
+    }
+
     @Override
     public String create(Empleado obj) {
         lista_emp = getAll();
@@ -129,5 +134,3 @@ public class Archivos implements ImplEmpleado{
         return obj;
     }
 }
-
-
