@@ -42,7 +42,7 @@ public class Login extends JFrame {
         mostrar = new javax.swing.JCheckBox();
         jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         eti1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         eti1.setText("Usuario");
@@ -157,7 +157,9 @@ public class Login extends JFrame {
         if (obj==null) {
               JOptionPane.showMessageDialog(null, "Credenciales invalidas!!");
         }else{
-              JOptionPane.showMessageDialog(null, "Bienvenidos a Java Swing");
+              setVisible(false);
+              var menu = new MenuPrincipal(obj);
+              menu.setVisible(true);
         }
   
     }//GEN-LAST:event_jButton1ActionPerformed

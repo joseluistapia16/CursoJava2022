@@ -7,6 +7,7 @@ package curso2022_2;
 import com.curso2022_2.domain.Docente;
 import com.curso2022_2.domain.Empleado;
 import com.curso2022_2.domain.Persona;
+import com.curso2022_2.domain.Usuario;
 import com.curso2022_2.procesos.Inputs;
 import com.curso2022_2.procesos.Procesos;
 import com.curso2022_2.proyecto1.impl.Run;
@@ -17,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Scanner;
+import lombok.val;
 
 //Hola mundo soy Andy PILAY
 //Soy Jose
@@ -44,6 +46,8 @@ public class Curso2022_2 {
     static int numero;
 
     public static void main(String[] args) {
+        var usu =  new Usuario("hdjdjd","Biggi","Ma","12345","vore@gmail.com");
+        System.out.println(usu.getData());
         //Procesos obj = new Procesos();
 
         //System.out.println(obj.mensaje("Curso java"));
@@ -57,7 +61,7 @@ public class Curso2022_2 {
          */
         //eje18();
         var run = new Run();
-        run.inicio();
+       // run.inicio();
     }
 
     private static void eje1() {
