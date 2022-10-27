@@ -24,7 +24,7 @@ import java.util.List;
  */
 public class Archivos implements ImplEmpleado {
 
-    String ruta = "C:\\Users\\LAPTOP-HP\\Documents\\NetBeansProjects\\java\\prueba.json";
+    String ruta = "C:\\Users\\geova\\OneDrive\\Escritorio\\javas\\prueba.json";
     List<Empleado> lista_emp;
     Procesos proc;
 
