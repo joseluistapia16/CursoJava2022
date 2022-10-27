@@ -4,14 +4,20 @@
  */
 package com.JavaApplication.domain;
 
+import com.JavaApplication.Interfaces.Methodss;
+import java.util.List;
+
 /**
  *
  * @author FRANKLIN RV
  */
-public class Empleado extends Persona{
+public class Empleado extends Persona implements Methodss {
     private String usuario;
     private String cargo;
 
+    public Empleado() {
+    }
+    
     public Empleado( String cedula, String nombre, String apellido, String correo,String usuario, String cargo) {
         super(cedula, nombre, apellido, correo);
         this.usuario = usuario;
@@ -35,9 +41,20 @@ public class Empleado extends Persona{
         this.cargo = cargo;
     }
     
+    @Override
     public String getData(){
         return super.getData()+" "+getUsuario()+" "+getCargo();
         
+    }
+
+    @Override
+    public String concat(List<String> lista) {
+        var msg = "";
+        for (int i = 0; i < lista.size(); i++) {
+            msg = msg + lista.get(i) + " ";
+        }
+        return msg;
+
     }
     
         

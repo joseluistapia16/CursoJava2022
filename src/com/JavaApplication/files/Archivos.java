@@ -8,14 +8,13 @@ import com.JavaApplication.Interfaces.ImplEmpleado;
 import com.JavaApplication.domain.Empleado;
 import com.JavaApplication.process.Procesos;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,10 +40,10 @@ public class Archivos implements ImplEmpleado {
         var json = new Gson().toJson(lista_emp);
         var msg = "";
         try {
-            var file = new FileWriter(ruta);
-            file.write(json);
-            file.flush();
-            file.close();
+            try (java.io.FileWriter file = new FileWriter(ruta)) {
+                file.write(json);
+                file.flush();
+            }
             msg = "Los datos han sido guardados!";
         } catch (IOException e) {
             msg = "Los datos NO han sido guardados!";
@@ -65,12 +64,12 @@ public class Archivos implements ImplEmpleado {
             lista_emp.set(pos, obj);
             var json = new Gson().toJson(lista_emp);
             try {
-                var files = new FileWriter(ruta);
-                files.write(json);
-                files.flush();
-                files.close();
+                try (java.io.FileWriter files = new FileWriter(ruta)) {
+                    files.write(json);
+                    files.flush();
+                }
                 res = "Los datos han sido actualizados!";
-            } catch (Exception e) {
+            } catch (IOException e) {
                 res = "Los datos no han sido actualizados!";
             }
         }
@@ -116,7 +115,7 @@ public class Archivos implements ImplEmpleado {
             }
             lista = gson.fromJson(msg, new TypeToken<List<Empleado>>() {
             }.getType());
-        } catch (Exception e) {
+        } catch (JsonSyntaxException | IOException e) {
             System.out.println("Error");
         }
         return lista;
