@@ -27,7 +27,7 @@ public class Archivos implements ImplEmpleado{
     Procesos proc;
  public Archivos(){
      lista_emp = new ArrayList<>();
-        proc = new Procesos();
+     proc = new Procesos();
  }
     @Override
     public String create(Empleado obj) {

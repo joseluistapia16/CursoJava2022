@@ -18,6 +18,7 @@ public class Empleado extends Persona{
         this.cargo = cargo;
     }
 
+
     public String getUsuario() {
         return usuario;
     }

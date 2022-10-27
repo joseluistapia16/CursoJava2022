@@ -8,6 +8,7 @@ import com.JavaApplication.domain.Empleado;
 import com.JavaApplication.menu.Menu;
 import com.JavaApplication.process.Inputs;
 import com.JavaApplication.process.Procesos;
+import com.JavaApplication.files.Archivos;
 import java.util.List;
 
 /**
@@ -20,12 +21,12 @@ public class Run {
     Inputs inp;
     Menu menu1;
     Procesos proc;
-    Archivo arch;
+    Archivos arch;
     
     public Run(){
         proc = new Procesos();
         inp = new Inputs();
-        arch = new Archivo();
+        arch = new Archivos();
         menu1 = new Menu();
         lista = arch.getAll();
         
@@ -89,7 +90,7 @@ public class Run {
         var id = inp.inputStr("Cedula:");
         var obj = arch.getOne(id);
         if (obj != null) {
-            System.out.println(obj.getInfoData());
+            System.out.println(obj.getData());
         } else {
             System.out.println("Cedula no existe!!");
         }
@@ -102,13 +103,13 @@ public class Run {
         var id = inp.inputStr("Cedula:");
         var pos = proc.getPosition(id, lista);
         if (pos != -1) {
-            System.out.println(lista.get(pos).getInfoData());
+            System.out.println(lista.get(pos).getData());
             var nombre = inp.inputStr("Nombres:");
             var apellido = inp.inputStr("Apellidos:");
-            var sueldo = inp.inputDouble("Sueldo:");
-            var turno = inp.inputStr("Turno:");
-            var departamento = inp.inputStr("Departamento:");
-            var obj1 = new Empleado(nombre, apellido, sueldo, turno, departamento);
+            var correo = inp.inputStr("Correo:");
+            var usuario = inp.inputStr("Usuario:");
+            var cargo = inp.inputStr("Cargo:");
+            var obj1 = new Empleado(id,nombre, apellido, correo, usuario, cargo);
             obj1.setCedula(id);
             var msg = arch.update(obj1);
             System.out.println(msg);
@@ -123,7 +124,7 @@ public class Run {
         var id = inp.inputStr("Cedula:");
         var pos = proc.getPosition(id, lista);
         if (pos != -1) {
-            System.out.println(lista.get(pos).getInfoData());
+            System.out.println(lista.get(pos).getData());
             var res = arch.delete(id);
             System.out.println(res);
         }else{
