@@ -10,13 +10,11 @@ package com.JavaApplication.domain;
  */
 public class Empleado extends Persona{
     private String usuario;
-    private String contraseña;
     private String cargo;
 
-    public Empleado( String cedula, String nombre, String apellido, String correo,String usuario, String contraseña, String cargo) {
+    public Empleado( String cedula, String nombre, String apellido, String correo,String usuario, String cargo) {
         super(cedula, nombre, apellido, correo);
         this.usuario = usuario;
-        this.contraseña = contraseña;
         this.cargo = cargo;
     }
 
@@ -28,14 +26,6 @@ public class Empleado extends Persona{
         this.usuario = usuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
-    }
-
     public String getCargo() {
         return cargo;
     }
@@ -45,7 +35,7 @@ public class Empleado extends Persona{
     }
     
     public String getData(){
-        return super.getData()+" "+getUsuario()+" "+getContraseña()+" "+getCargo();
+        return super.getData()+" "+getUsuario()+" "+getCargo();
         
     }
     
