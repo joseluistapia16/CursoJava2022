@@ -79,7 +79,7 @@
     <Component class="javax.swing.JLabel" name="img">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\geova\Downloads\imgjava.jpeg"/>
+          <Image iconType="3" name="/com/JavaApplication/views/imgjava.jpeg"/>
         </Property>
         <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="img"/>

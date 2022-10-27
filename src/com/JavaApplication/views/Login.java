@@ -37,7 +37,7 @@ public class Login extends javax.swing.JPanel {
         setBackground(new java.awt.Color(13, 142, 171));
         setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 255, 204), new java.awt.Color(204, 255, 255)));
 
-        img.setIcon(new javax.swing.ImageIcon("C:\\Users\\geova\\Downloads\\imgjava.jpeg")); // NOI18N
+        img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/JavaApplication/views/imgjava.jpeg"))); // NOI18N
         img.setLabelFor(img);
         img.setText("img");
 
