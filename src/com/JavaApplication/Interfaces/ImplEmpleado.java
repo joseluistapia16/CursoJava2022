@@ -22,5 +22,7 @@ public interface ImplEmpleado {
     public List<Empleado> getAll();
 
     public Empleado getOne(String id);
+    
+    public Empleado getLogin(String user, String password);
 
 }

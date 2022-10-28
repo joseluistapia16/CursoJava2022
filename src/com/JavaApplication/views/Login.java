@@ -4,19 +4,19 @@
  */
 package com.JavaApplication.views;
 
-import java.awt.Graphics;
-import java.awt.Image;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-
+import javax.swing.JOptionPane;
+import com.JavaApplication.files.Archivos;
 /**
  *
  * @author geova
  */
 public class Login extends javax.swing.JFrame {
+    Archivos crud = null;
+    
     public Login() {
         initComponents();
         setLocationRelativeTo(null);
+        crud = new Archivos();
     }
     
     @SuppressWarnings("unchecked")
@@ -150,7 +150,14 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        var obj = crud.getLogin(textFieldUser.getText(), jPasswordField1.getText());
+        if (obj==null) {
+              JOptionPane.showMessageDialog(null, "Credenciales invalidas!!");
+        }else{
+              setVisible(false);
+              var menu = new MenuPrincipal(obj);
+              menu.setVisible(true);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -181,16 +188,7 @@ public class Login extends javax.swing.JFrame {
         });
     }
     
-   class FondoPanel extends JPanel{
-      private Image imagen;
-      public void paint(Graphics g)
-      {
-          imagen = new ImageIcon(getClass().getResource("/imagenes/imgjava.jpeg")).getImage();
-          g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
-          setOpaque(false);
-          super.paint(g);
-      }
-   }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel img;

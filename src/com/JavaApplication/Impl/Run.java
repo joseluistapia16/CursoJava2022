@@ -76,8 +76,9 @@ public class Run {
             var apellido = inp.inputStr("Apellidos:");
             var correo = inp.inputStr("Correo:");
             var usuario = inp.inputStr("Usuario:");
+            var password = inp.inputStr("Password:");
             var cargo = inp.inputStr("Cargo:");
-            var obj = new Empleado(cedula, nombre, apellido, usuario, correo, cargo);
+            var obj = new Empleado(cedula, nombre, apellido,correo,usuario,password, cargo);
             var msg = arch.create(obj);
             System.out.println(msg);
         } else {
@@ -109,8 +110,9 @@ public class Run {
             var apellido = inp.inputStr("Apellidos:");
             var correo = inp.inputStr("Correo:");
             var usuario = inp.inputStr("Usuario:");
+            var password = inp.inputStr("Password:");
             var cargo = inp.inputStr("Cargo:");
-            var obj1 = new Empleado(id, nombre, apellido, correo, usuario, cargo);
+            var obj1 = new Empleado(id, nombre, apellido, correo, usuario,password, cargo);
             obj1.setCedula(id);
             var msg = arch.update(obj1);
             System.out.println(msg);

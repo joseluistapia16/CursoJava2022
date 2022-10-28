@@ -14,13 +14,15 @@ import java.util.List;
 public class Empleado extends Persona implements Methodss {
     private String usuario;
     private String cargo;
+    private String password;
 
     public Empleado() {
     }
     
-    public Empleado( String cedula, String nombre, String apellido, String correo,String usuario, String cargo) {
+    public Empleado( String cedula, String nombre, String apellido, String correo,String usuario,String password, String cargo) {
         super(cedula, nombre, apellido, correo);
         this.usuario = usuario;
+        this.password = password;
         this.cargo = cargo;
     }
 
@@ -32,7 +34,15 @@ public class Empleado extends Persona implements Methodss {
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
+    
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.usuario = password;
+    }
+    
     public String getCargo() {
         return cargo;
     }
@@ -43,7 +53,7 @@ public class Empleado extends Persona implements Methodss {
     
     @Override
     public String getData(){
-        return super.getData()+" "+getUsuario()+" "+getCargo();
+        return super.getData()+" "+getUsuario()+" "+getPassword()+" "+getCargo();
         
     }
 

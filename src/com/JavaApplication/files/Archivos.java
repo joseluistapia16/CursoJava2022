@@ -24,7 +24,8 @@ import java.util.List;
  */
 public class Archivos implements ImplEmpleado {
 
-    String ruta = "C:\\Users\\geova\\OneDrive\\Escritorio\\javas\\prueba.json";
+    //String ruta = "C:\\Users\\geova\\OneDrive\\Escritorio\\javas\\prueba.json";
+    String ruta = "C:\\Users\\user\\Documents\\NetBeansProjects\\java\\prueba.json";
     List<Empleado> lista_emp;
     Procesos proc;
 
@@ -132,4 +133,22 @@ public class Archivos implements ImplEmpleado {
         }
         return obj;
     }
+    
+    @Override
+    public Empleado getLogin(String user, String password) {
+       Empleado obj=null;
+       try{
+           lista_emp= getAll();
+           for (int i = 0; i < lista_emp.size(); i++) {
+               if (user.equals(lista_emp.get(i).getUsuario()) && password.equals(lista_emp.get(i).getPassword())) {
+                   obj= lista_emp.get(i);
+                   break;
+               }
+           }
+       }catch(Exception e){
+           obj=null;
+       }
+        return obj;
+    }
+
 }
