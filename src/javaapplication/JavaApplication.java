@@ -5,6 +5,7 @@
 package javaapplication;
 
 import com.JavaApplication.Impl.Run;
+import com.JavaApplication.views.Login;
 
 /**
  *
@@ -17,9 +18,10 @@ public class JavaApplication {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        var run= new Run();
-        run.inicio();
-        
+//        var run= new Run();
+//        run.inicio();
+        var logg = new Login();
+        logg.setVisible(true);
     }
     
 }
