@@ -178,7 +178,7 @@ public class Login extends javax.swing.JFrame {
                         .addGap(21, 21, 21)
                         .addComponent(password)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCheckBox1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -205,34 +205,18 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        var obj = crud.getLogin(textFieldUser.getText(), jPasswordField1.getText());
-        if (obj==null) {
-              JOptionPane.showMessageDialog(null, "Credenciales invalidas!!");
-        }else{
-              setVisible(false);
-              var menu = new MenuPrincipal(obj);
-              menu.setVisible(true);
-        }
+        aceptar();
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int op = JOptionPane.showConfirmDialog(null, "Desea salir?", "Exit",
-                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        switch (op) {
-            case 0:
-                System.exit(0);
-                break;
-
-        }
+        salir();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        if (jCheckBox1.isSelected()) {
-            jPasswordField1.setEchoChar((char)0);
-        }else{
-            jPasswordField1.setEchoChar('*');
-        }
+        checkearPassword();
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void textFieldUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldUserActionPerformed
@@ -246,6 +230,36 @@ public class Login extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         new Registrar(new JFrame(),true).setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void aceptar(){
+            var obj = crud.getLogin(textFieldUser.getText(), jPasswordField1.getText());
+            if (obj==null) {
+                  JOptionPane.showMessageDialog(null, "Credenciales invalidas!!");
+            }else{
+                  setVisible(false);
+                  var menu = new MenuPrincipal(obj);
+                  menu.setVisible(true);
+            }
+    }
+    
+    private void salir(){
+        int op = JOptionPane.showConfirmDialog(null, "Desea salir?", "Exit",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        switch (op) {
+            case 0:
+                System.exit(0);
+                break;
+
+        }
+    }
+    
+    private void checkearPassword(){
+        if (jCheckBox1.isSelected()) {
+            jPasswordField1.setEchoChar((char)0);
+        }else{
+            jPasswordField1.setEchoChar('*');
+        }
+    }
 
     /**
      * @param args the command line arguments
