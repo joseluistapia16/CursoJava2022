@@ -6,6 +6,7 @@ package com.JavaApplication.views;
 
 import javax.swing.JOptionPane;
 import com.JavaApplication.files.Archivos;
+import javax.swing.JFrame;
 /**
  *
  * @author geova
@@ -82,12 +83,14 @@ public class Login extends javax.swing.JFrame {
         password.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         password.setText("Password :");
 
+        textFieldUser.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         textFieldUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldUserActionPerformed(evt);
             }
         });
 
+        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordField1ActionPerformed(evt);
@@ -208,7 +211,14 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        System.exit(0);
+        int op = JOptionPane.showConfirmDialog(null, "Desea salir?", "Exit",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        switch (op) {
+            case 0:
+                System.exit(0);
+                break;
+
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -228,7 +238,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        new Registrar(new JFrame(),true).setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
