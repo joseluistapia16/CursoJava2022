@@ -49,12 +49,50 @@ public class UsersFiles implements ImplUsuario{
 
     @Override
     public String update(Usuario obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        lista = getAll();
+        var res = "";
+        var pos = proc.getUserPosition(obj.getUsuario(), lista);
+        if (pos < 0) {
+            res = "Cedula no Existe!";
+        } else {
+            lista= getAll();
+            lista.set(pos, obj);
+            var json = new Gson().toJson(lista);
+            try {
+                var files = new FileWriter(ruta);
+                files.write(json);
+                files.flush();
+                files.close();
+                res = "Los datos han sido actualizados!";
+            } catch (Exception e) {
+                res = "Los datos no han sido actualizados!";
+            }
+        }
+        return res;
     }
 
     @Override
     public String delete(String user) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        lista = getAll();
+        var res = "";
+        var pos = proc.getUserPosition(user, lista);
+        if (pos < 0) {
+            res = "Cedula no Existe!";
+        } else {
+            lista = getAll();
+            lista.remove(pos);
+            var json = new Gson().toJson(lista);
+            try {
+                var files = new FileWriter(ruta);
+                files.write(json);
+                files.flush();
+                files.close();
+                res = "Los datos han sido eliminados!";
+            } catch (Exception e) {
+                res = "Los datos no han sido eliminados!";
+            }
+        }
+        return res;
     }
 
     @Override

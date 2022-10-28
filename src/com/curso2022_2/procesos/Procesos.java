@@ -48,6 +48,18 @@ public class Procesos {
         }
         return pos;
     }
+    
+    
+        public int getUserPosition(String id, List<Usuario> lista) {
+        int pos = -1;
+        for (int i = 0; i < lista.size(); i++) {
+            if (id.equals(lista.get(i).getUsuario())) {
+                pos = i;
+                break;
+            }
+        }
+        return pos;
+    }
 
     public Usuario getUser(String user, List<Usuario> lista) {
         Usuario obj = lista.stream()

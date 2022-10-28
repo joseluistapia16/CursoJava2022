@@ -11,6 +11,7 @@ import com.curso2022_2.domain.Usuario;
 import com.curso2022_2.procesos.Inputs;
 import com.curso2022_2.procesos.Procesos;
 import com.curso2022_2.proyecto1.impl.Run;
+import com.curso2022_2.views.Login;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,8 +47,10 @@ public class Curso2022_2 {
     static int numero;
 
     public static void main(String[] args) {
-        var usu =  new Usuario("hdjdjd","Biggi","Ma","12345","vore@gmail.com");
-        System.out.println(usu.getData());
+        var lg = new Login();
+        lg.setVisible(true);
+      //  var usu =  new Usuario("hdjdjd","Biggi","Ma","12345","vore@gmail.com");
+        //System.out.println(usu.getData());
         //Procesos obj = new Procesos();
 
         //System.out.println(obj.mensaje("Curso java"));

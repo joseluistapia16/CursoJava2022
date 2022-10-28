@@ -7,16 +7,21 @@ package com.curso2022_2.views;
 import com.curso2020_2.views.components.Tables;
 import com.curso2022_2.domain.Usuario;
 import com.java2022_2.files.UsersFiles;
+import java.text.MessageFormat;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
  * @author Usuario
  */
 public class GestionUsuarios extends javax.swing.JDialog {
-     List<Usuario> lista= null;
-     UsersFiles crud=null;
+
+    List<Usuario> lista = null;
+    UsersFiles crud = null;
+
     /**
      * Creates new form GestionUsuarios
      */
@@ -28,8 +33,6 @@ public class GestionUsuarios extends javax.swing.JDialog {
         lista = crud.getAll();
         Tables.chargeTable(lista, tabla);
     }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,6 +49,7 @@ public class GestionUsuarios extends javax.swing.JDialog {
         tabla = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -58,8 +62,21 @@ public class GestionUsuarios extends javax.swing.JDialog {
             }
         });
 
+        tabla.setAutoCreateRowSorter(true);
+        tabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tabla.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -69,6 +86,7 @@ public class GestionUsuarios extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabla.setRowHeight(25);
         tabla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tablaMousePressed(evt);
@@ -78,12 +96,25 @@ public class GestionUsuarios extends javax.swing.JDialog {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setText("Registro");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton2.setText("Salir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton3.setText("Imprimir");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -102,9 +133,11 @@ public class GestionUsuarios extends javax.swing.JDialog {
                         .addGap(37, 37, 37)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 869, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(338, 338, 338)
+                        .addGap(223, 223, 223)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66)
+                        .addGap(58, 58, 58)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
@@ -117,11 +150,12 @@ public class GestionUsuarios extends javax.swing.JDialog {
                     .addComponent(flitro, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -130,6 +164,7 @@ public class GestionUsuarios extends javax.swing.JDialog {
     private void flitroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_flitroKeyReleased
         var user = flitro.getText();
         Tables.filter(user, tabla);
+        
     }//GEN-LAST:event_flitroKeyReleased
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -138,13 +173,67 @@ public class GestionUsuarios extends javax.swing.JDialog {
 
     private void tablaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMousePressed
         var fila = 0;
-        if (evt.getClickCount()==2) {
-            fila = tabla.getSelectedRow();
-            var val = tabla.getValueAt(fila, 0);
-            JOptionPane.showMessageDialog(null, val);
+        try {
+            if (evt.getClickCount() == 2) {
+                fila = tabla.getSelectedRow();
+                var obj = getObject("" + tabla.getValueAt(fila, 0), lista);
+                if (obj != null) {
+                    var ob = new EditUser(new JFrame(), true, obj);
+                    ob.setVisible(true);
+                    lista.clear();            
+                    lista = crud.getAll();
+                    Tables.chargeTable(lista, tabla);
+                }
+
+                //var val = tabla.getValueAt(fila, 0);
+                //JOptionPane.showMessageDialog(null, obj.getData());
+            }
+        } catch (Exception e) {
+
         }
-        
     }//GEN-LAST:event_tablaMousePressed
+
+    private Usuario getObject(String user, List<Usuario> lista1) {
+        Usuario obj = null;
+        for (int i = 0; i < lista1.size(); i++) {
+            if (user.equals(lista1.get(i).getUsuario())) {
+                obj = lista1.get(i);
+                break;
+            }
+        }
+        return obj;
+    }
+
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        printR();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       new Registrar(new JFrame(),true).setVisible(true);
+       lista=crud.getAll();
+       Tables.chargeTable(lista, tabla);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void printR() {
+        boolean res;
+        try {
+            var header = new MessageFormat("Usuarios");
+            var foot = new MessageFormat("Curso de Java 2022");
+            res = tabla.print(JTable.PrintMode.FIT_WIDTH, header, foot);
+            if (res) {
+                JOptionPane.showMessageDialog(tabla,
+                        "Impresion completa!",
+                        "Resultado",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(tabla, "Impresion cancelada!",
+                        "Resultado!", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (Exception e) {
+
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -192,6 +281,7 @@ public class GestionUsuarios extends javax.swing.JDialog {
     private javax.swing.JTextField flitro;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla;
