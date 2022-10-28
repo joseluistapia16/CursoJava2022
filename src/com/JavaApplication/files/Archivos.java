@@ -81,7 +81,7 @@ public class Archivos implements ImplEmpleado {
     @Override
     public String delete(String id) {
         lista_emp = getAll();
-        var res = "";
+      var res = "";
         var pos = proc.getPosition(id, lista_emp);
         if (pos < 0) {
             res = "Cedula no Existe!";

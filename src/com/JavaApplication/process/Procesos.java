@@ -5,6 +5,7 @@
 package com.JavaApplication.process;
 
 import com.JavaApplication.domain.Empleado;
+import com.JavaApplication.domain.Producto;
 import java.util.List;
 
 /**
@@ -12,6 +13,7 @@ import java.util.List;
  * @author FRANKLIN RV
  */
 public class Procesos {
+
     public String valor;
 
     public String mensaje(String msg) {
@@ -46,6 +48,24 @@ public class Procesos {
         }
         return pos;
     }
-
-    
+    public Producto getOneP(String codigo, List<Producto> lista1) {
+        Producto obj = null;
+        for (int i = 0; i < lista1.size(); i++) {
+            if (codigo.equals(lista1.get(i).getCodigo())) {
+                obj = lista1.get(i);
+                break;
+            }
+        }
+        return obj;
+}
+    public int getPositionP(String codigo, List<Producto> lista) {
+        int pos = -1;
+        for (int i = 0; i < lista.size(); i++) {
+            if (codigo.equals(lista.get(i).getCodigo())) {
+                pos = i;
+                break;
+            }
+        }
+        return pos;
+    }
 }

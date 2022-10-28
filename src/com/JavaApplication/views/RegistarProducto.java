@@ -4,15 +4,18 @@
  */
 package com.JavaApplication.views;
 
+import com.JavaApplication.files.ProductFiles;
+
 /**
  *
  * @author FRANKLIN RV
  */
 public class RegistarProducto extends javax.swing.JFrame {
-
-    /**
-     * Creates new form RegistarProducto
-     */
+    ProductFiles crud = null;
+    
+    
+ 
+   
     public RegistarProducto() {
         initComponents();
     }
