@@ -6,6 +6,7 @@ package com.curso2022_2.views;
 
 import com.curso2022_2.domain.Usuario;
 import java.awt.Frame;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -71,6 +72,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu5.setText("Gestion de docentes");
 
         item2.setText("Datos de docentes");
+        item2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                item2ActionPerformed(evt);
+            }
+        });
         jMenu5.add(item2);
 
         jMenu2.add(jMenu5);
@@ -133,6 +139,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
        var gu = new GestionUsuarios(new Frame(), true);
        gu.setVisible(true);
     }//GEN-LAST:event_item1ActionPerformed
+
+    private void item2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item2ActionPerformed
+        new GestionDocentes(new JFrame(),true).setVisible(true);
+    }//GEN-LAST:event_item2ActionPerformed
 
     /**
      * @param args the command line arguments
