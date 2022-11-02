@@ -4,6 +4,7 @@
  */
 package com.curso2020_2.views.components;
 
+import com.curso2022_2.domain.Docente;
 import com.curso2022_2.domain.Usuario;
 import java.util.List;
 import javax.swing.JTable;
@@ -56,10 +57,40 @@ public class Tables {
         }
     }
 
+    public static void chargeDocenteTable(List<Docente> lista1, JTable tabla) {
+        int a[] = {40, 80, 80, 160, 100};
+        String column[] = {"CEDULA", "NOMBRES", "APELLIDOS", "HORAS", "GESTORIA"};
+        var tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        model = emptyTable(tabla);
+        String filas[] = new String[5];
+        model = new DefaultTableModel(null, column);
+        tabla.setShowGrid(true);
+        for (int i = 0; i < lista1.size(); i++) {
+            filas[0] = lista1.get(i).getCedula();
+            filas[1] = lista1.get(i).getNombre();
+            filas[2] = lista1.get(i).getApellido();
+            filas[3] = "" + lista1.get(i).getHoras();
+            filas[4] = lista1.get(i).getGestoria();
+            model.addRow(filas);
+            tabla.setModel(model);
+            tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
+            tabla.getColumnModel().getColumn(0).setCellRenderer(tcr);
+            tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
+            tabla.getColumnModel().getColumn(1).setCellRenderer(tcr);
+            tabla.getColumnModel().getColumn(2).setPreferredWidth(a[2]);
+            tabla.getColumnModel().getColumn(2).setCellRenderer(tcr);
+            tabla.getColumnModel().getColumn(3).setPreferredWidth(a[3]);
+            tabla.getColumnModel().getColumn(3).setCellRenderer(tcr);
+            tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
+            tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        }
+    }
+
     public static void filter(String value, JTable tabla) {
-          TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
-          tabla.setRowSorter(tr);
-          tr.setRowFilter(RowFilter.regexFilter("(?i)"+value));
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
+        tabla.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter("(?i)" + value));
     }
 
 }

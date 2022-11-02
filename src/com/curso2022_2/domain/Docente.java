@@ -13,10 +13,10 @@ import java.util.List;
  * @author josel
  */
 public class Docente extends Persona implements Methods{
-    
+    private String idUsuario;
     private int horas;
     private String gestoria;
-
+    private String estado;
     public Docente() {
 
     }
@@ -26,6 +26,38 @@ public class Docente extends Persona implements Methods{
         this.horas = horas;
         this.gestoria = gestoria;
     }
+
+    public Docente(String cedula,String idUsuario,String nombre, String apellido,Double sueldo, int horas, String gestoria,  String estado) {
+        super(cedula, nombre, apellido, sueldo);
+        this.idUsuario = idUsuario;
+        this.horas = horas;
+        this.gestoria = gestoria;
+        this.estado = estado;
+    }
+    
+    
+    
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    
+    
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+    
+    
 
     public int getHoras() {
         return horas;

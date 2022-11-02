@@ -165,6 +165,11 @@ public class NewDocente extends javax.swing.JDialog {
 
         jToggleButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jToggleButton3.setText("Salir");
+        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton3ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Imagen");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -174,6 +179,11 @@ public class NewDocente extends javax.swing.JDialog {
         });
 
         jButton2.setText("Sin imagen");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -233,6 +243,14 @@ public class NewDocente extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         getImage("\\Users\\sopor\\Downloads\\avatar1.png");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+         imagenVacia();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+       this.setVisible(false);
+    }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     private void getImage(String path){
         var dlg = new JFileChooser(path);

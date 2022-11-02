@@ -207,7 +207,7 @@ public class GestionDocentes extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       new Registrar(new JFrame(),true).setVisible(true);
+       new NewDocente(new JFrame(), true).setVisible(true);
        //lista=crud.getAll();
        Tables.chargeDocenteTable(lista, tabla);
     }//GEN-LAST:event_jButton1ActionPerformed
