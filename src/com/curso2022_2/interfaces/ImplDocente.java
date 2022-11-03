@@ -15,7 +15,7 @@ import java.util.List;
 public interface ImplDocente {  
     public String create(Docente obj);
     public String update(Docente obj);
-    public String delete(Docente obj);
-    public List<Docente> getAll(Docente obj);
+    public String delete(String  id);
+    public List<Docente> getAll();
     public Docente getOne(String id);
 }
