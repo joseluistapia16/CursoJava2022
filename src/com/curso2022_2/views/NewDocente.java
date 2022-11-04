@@ -4,9 +4,14 @@
  */
 package com.curso2022_2.views;
 
+import com.curso2022_2.dao.CrudDocente;
+import com.curso2022_2.domain.Docente;
+import com.curso2022_2.domain.Usuario;
+import com.curso2022_2.procesos.Procesos;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -14,7 +19,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Usuario
  */
 public class NewDocente extends javax.swing.JDialog {
-     String rutaImagen="";
+    CrudDocente crud = new CrudDocente();
+    Usuario user1 = null;
+    String rutaImagen = "";
+
     /**
      * Creates new form NewDocente
      */
@@ -23,6 +31,15 @@ public class NewDocente extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         imagenVacia();
+    }
+
+    public NewDocente(Usuario obj, java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+        setLocationRelativeTo(null);
+        imagenVacia();
+        user1 = obj;
+        System.out.println("user 1 "+user1.getData());
     }
 
     /**
@@ -38,13 +55,15 @@ public class NewDocente extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         lb2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        Horas = new javax.swing.JLabel();
+        lb10 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         cedula = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        horas = new javax.swing.JTextField();
+        apellidos = new javax.swing.JTextField();
+        nombres = new javax.swing.JTextField();
+        gestoria = new javax.swing.JComboBox<>();
+        lb4 = new javax.swing.JLabel();
+        sueldo = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         foto = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
@@ -67,20 +86,41 @@ public class NewDocente extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel3.setText("Apellidos");
 
-        Horas.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        Horas.setText("Horas");
+        lb10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lb10.setText("Sueldo");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel8.setText("Gestoria");
 
-        cedula.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cedula.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         cedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 cedulaKeyTyped(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        horas.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        horas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                horasKeyTyped(evt);
+            }
+        });
+
+        apellidos.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+
+        nombres.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+
+        gestoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PPP", "VINCULACION", "INGLES", "TITULACION" }));
+
+        lb4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lb4.setText("Horas");
+
+        sueldo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        sueldo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                sueldoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -94,18 +134,23 @@ public class NewDocente extends javax.swing.JDialog {
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Horas, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lb10, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lb4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(83, 83, 83))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(83, 83, 83))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(horas, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(12, 12, 12)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(sueldo, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gestoria, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombres, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -116,22 +161,26 @@ public class NewDocente extends javax.swing.JDialog {
                     .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lb2)
+                    .addComponent(nombres, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lb10)
+                    .addComponent(sueldo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lb2))
-                .addGap(11, 11, 11)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(11, 11, 11)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Horas))
+                    .addComponent(lb4)
+                    .addComponent(horas, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestoria, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -151,7 +200,7 @@ public class NewDocente extends javax.swing.JDialog {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(foto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -159,6 +208,11 @@ public class NewDocente extends javax.swing.JDialog {
 
         jToggleButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jToggleButton1.setText("Grabar");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
 
         jToggleButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jToggleButton2.setText("Nuevo");
@@ -191,22 +245,22 @@ public class NewDocente extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70)
+                        .addGap(66, 66, 66)
                         .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(75, 75, 75)
+                        .addGap(63, 63, 63)
                         .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
+                        .addGap(105, 105, 105)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
+                        .addGap(55, 55, 55)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
@@ -215,27 +269,33 @@ public class NewDocente extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(7, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 32, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void cedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cedulaKeyTyped
-       var car = evt.getKeyChar();
-        if (cedula.getText().length()>=10) {
+        var car = evt.getKeyChar();
+        if (cedula.getText().length() >= 10) {
             evt.consume();
         }
-        if((car<'0' || car>'9')){
+        if ((car < '0' || car > '9')) {
             evt.consume();
         }
     }//GEN-LAST:event_cedulaKeyTyped
@@ -245,45 +305,90 @@ public class NewDocente extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         imagenVacia();
+        imagenVacia();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
-       this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
-    private void getImage(String path){
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        save();
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void horasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_horasKeyTyped
+        var car = evt.getKeyChar();
+        if (horas.getText().length() >= 3) {
+            evt.consume();
+        }
+        if ((car < '0' || car > '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_horasKeyTyped
+
+    private void sueldoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sueldoKeyTyped
+        var car = evt.getKeyChar();
+        if (sueldo.getText().length() >= 12) {
+            evt.consume();
+        }
+        if ((car < '0' || car > '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_sueldoKeyTyped
+
+    private void save() {
+        var numero = sueldo.getText();
+        var horas1 = horas.getText();
+        if (numero == null || "".equals(numero) || numero.trim().length() == 0) {
+            numero = "0";
+            sueldo.setText(numero);
+        }
+        if (horas1 == null || "".equals(horas1) || horas1.trim().length() == 0) {
+            horas1 = "0";
+            horas.setText(horas1);
+        }
+        var ruta=Procesos.getMsqlPath(rutaImagen);
+        var ges = ""+gestoria.getSelectedItem();
+        System.out.println("imagen ruta "+ruta+" combo "+ges);
+        var obj = new Docente(cedula.getText(), user1.getUsuario(), nombres.getText(), apellidos.getText(),
+                Double.parseDouble(numero+".0"), Integer.parseInt(horas1), ges,"A", ruta);
+
+        System.out.println("obj "+obj.getData());
+        var msg = crud.create(obj);
+        JOptionPane.showMessageDialog(null, msg);
+    }
+
+    private void getImage(String path) {
         var dlg = new JFileChooser(path);
-        dlg.setFileFilter(new FileNameExtensionFilter("Archivos de imagen", 
-                       "tif","jpg","jpeg","png","gif"));
+        dlg.setFileFilter(new FileNameExtensionFilter("Archivos de imagen",
+                "tif", "jpg", "jpeg", "png", "gif"));
         var opc = dlg.showOpenDialog(this);
-        if(opc == JFileChooser.APPROVE_OPTION){
+        if (opc == JFileChooser.APPROVE_OPTION) {
             var fil = dlg.getSelectedFile().getPath();
             foto.setIcon(new ImageIcon(fil));
             ImageIcon icon = new ImageIcon(fil);
             Image img = icon.getImage();
-            Image nueva = img.getScaledInstance(450, 285, Image.SCALE_SMOOTH);
+            Image nueva = img.getScaledInstance(450, 360, Image.SCALE_SMOOTH);
             ImageIcon newIcon = new ImageIcon(nueva);
             foto.setIcon(newIcon);
-            rutaImagen= dlg.getSelectedFile().getPath();
-            System.out.println("Ruta "+rutaImagen);
+            rutaImagen = dlg.getSelectedFile().getPath();
+            System.out.println("Ruta " + rutaImagen);
         }
     }
-    
-        public void imagenVacia() {
+
+    public void imagenVacia() {
         String fil = "\\Fichas Crear\\img\\sin_imagen.png";
         //String fil = "\\Users\\sopor\\OneDrive\\Documentos\\NetBeansProjects\\F_Crear\\F_Crear\\src\\img\\sin_imagen.png";
         foto.setIcon(new ImageIcon(fil));
         ImageIcon icon = new ImageIcon(fil);
         Image img = icon.getImage();
         System.out.println(fil + " Foto  " + foto.getWidth() + " " + foto.getHeight());
-        Image newimg = img.getScaledInstance(256, 256, java.awt.Image.SCALE_SMOOTH);
+        Image newimg = img.getScaledInstance(450, 360, java.awt.Image.SCALE_SMOOTH);
         ImageIcon newIcono = new ImageIcon(newimg);
         foto.setIcon(newIcono);
         rutaImagen = fil;
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -327,23 +432,25 @@ public class NewDocente extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Horas;
+    private javax.swing.JTextField apellidos;
     private javax.swing.JTextField cedula;
     private javax.swing.JLabel foto;
+    private javax.swing.JComboBox<String> gestoria;
+    private javax.swing.JTextField horas;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JLabel lb10;
     private javax.swing.JLabel lb2;
+    private javax.swing.JLabel lb4;
+    private javax.swing.JTextField nombres;
+    private javax.swing.JTextField sueldo;
     // End of variables declaration//GEN-END:variables
 }

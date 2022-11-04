@@ -48,9 +48,8 @@ public class Procesos {
         }
         return pos;
     }
-    
-    
-        public int getUserPosition(String id, List<Usuario> lista) {
+
+    public int getUserPosition(String id, List<Usuario> lista) {
         int pos = -1;
         for (int i = 0; i < lista.size(); i++) {
             if (id.equals(lista.get(i).getUsuario())) {
@@ -127,6 +126,18 @@ public class Procesos {
             }
         }
         return res;
+    }
+
+    public static String getMsqlPath(String cadena) {
+        String c1 = "";
+        for (int i = 0; i < cadena.length(); i++) {
+            if (cadena.charAt(i) == '\\') {
+                c1 = c1 + "\\\\";
+            } else {
+                c1 = c1 + cadena.charAt(i);
+            }
+        }
+        return c1;
     }
 
 }

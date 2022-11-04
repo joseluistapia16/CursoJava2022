@@ -38,8 +38,8 @@ public class CrudDocente implements ImplDocente {
     public String create(Docente obj) {
         var msg = "";
         try {
-            var sql = "insert into docente(cedula,idUsuario,nombres,apellidos,sueldo,horas,gestoria,estado)"
-                    + " values(?,?,?,?,?,?,?,?)";
+            var sql = "insert into docente(cedula,idUsuario,nombres,apellidos,sueldo,horas,gestoria,estado,imagen)"
+                    + " values(?,?,?,?,?,?,?,?,?)";
             cone = con.conectar(base);
             PreparedStatement smt = cone.prepareStatement(sql);
             smt.setString(1, obj.getCedula());
@@ -50,6 +50,7 @@ public class CrudDocente implements ImplDocente {
             smt.setInt(6, obj.getHoras());
             smt.setString(7, obj.getGestoria());
             smt.setString(8, obj.getEstado());
+            smt.setString(9, obj.getImagen());
             var filas = smt.executeUpdate();
             cone.close();
             if (filas > 0) {
@@ -67,7 +68,7 @@ public class CrudDocente implements ImplDocente {
         var msg = "";
         try {
             var script = "update docente set nombres=?,apellidos=?, sueldo=?,horas=?,"
-                    + "gestoria=? where cedula=?";
+                    + "gestoria=?,imagen=? where cedula=?";
             cone = con.conectar(base);
             PreparedStatement prd = cone.prepareStatement(script);
             prd.setString(1, obj.getNombre());
@@ -75,7 +76,8 @@ public class CrudDocente implements ImplDocente {
             prd.setDouble(3, obj.getSueldo());
             prd.setInt(4, obj.getHoras());
             prd.setString(5, obj.getGestoria());
-            prd.setString(6, obj.getCedula());
+            prd.setString(6, obj.getImagen());
+            prd.setString(7, obj.getCedula());
             var rows = prd.executeUpdate();
             cone.close();
             if (rows > 0) {
@@ -128,7 +130,7 @@ public class CrudDocente implements ImplDocente {
                         rs.getDouble("sueldo"),
                         rs.getInt("horas"),
                         rs.getString("gestoria"),
-                        rs.getString("estado")
+                        rs.getString("estado"),rs.getString("imagen")
                 );
                 lista1.add(obj1);
             }
@@ -156,7 +158,8 @@ public class CrudDocente implements ImplDocente {
                         rs.getDouble("sueldo"),
                         rs.getInt("horas"),
                         rs.getString("gestoria"),
-                        rs.getString("estado")
+                        rs.getString("estado"),
+                        rs.getString("imaagen")
                 );
             }
         } catch (SQLException ex) {
@@ -203,7 +206,7 @@ public class CrudDocente implements ImplDocente {
                 "PILAY COFRE",
                 800.0,
                 70,
-                "DESARROLLO", "A"
+                "DESARROLLO", "A","C:\\Users\\sopor\\Downloads\\java.jpg"
         );
         //var resp = crud.create(obj);
         //var resp= crud.update(obj);

@@ -6,6 +6,7 @@ package com.curso2022_2.views;
 
 import com.curso2020_2.views.components.Tables;
 import com.curso2022_2.domain.Docente;
+import com.curso2022_2.domain.Usuario;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +19,8 @@ import javax.swing.JTable;
  * @author Usuario
  */
 public class GestionDocentes extends javax.swing.JDialog {
-    List<Docente> lista= null;
-    
+    Usuario user1=null;
+    List<Docente> lista = null;
 
     /**
      * Creates new form GestionUsuarios
@@ -28,7 +29,17 @@ public class GestionDocentes extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-         lista = new ArrayList<>();
+        lista = new ArrayList<>();
+        //Tables.chargeTable(lista, tabla);
+    }
+
+    public GestionDocentes(Usuario user,java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+        user1=user;
+        System.out.println(user1.getData());
+        setLocationRelativeTo(null);
+        lista = new ArrayList<>();
         //Tables.chargeTable(lista, tabla);
     }
 
@@ -162,7 +173,7 @@ public class GestionDocentes extends javax.swing.JDialog {
     private void flitroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_flitroKeyReleased
         var user = flitro.getText();
         Tables.filter(user, tabla);
-        
+
     }//GEN-LAST:event_flitroKeyReleased
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -207,9 +218,9 @@ public class GestionDocentes extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       new NewDocente(new JFrame(), true).setVisible(true);
-       //lista=crud.getAll();
-       Tables.chargeDocenteTable(lista, tabla);
+        new NewDocente(user1,new JFrame(), true).setVisible(true);
+        //lista=crud.getAll();
+        Tables.chargeDocenteTable(lista, tabla);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void printR() {

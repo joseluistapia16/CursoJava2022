@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class MenuPrincipal extends javax.swing.JFrame {
-
+     Usuario user=null;
     /**
      * Creates new form MenuPrincipal
      */
@@ -24,6 +24,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     public MenuPrincipal(Usuario obj) {
+        user = obj;
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Usuario: " + obj.getNombres() + " " + obj.getApellidos() + ".");
@@ -141,7 +142,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_item1ActionPerformed
 
     private void item2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item2ActionPerformed
-        new GestionDocentes(new JFrame(),true).setVisible(true);
+        new GestionDocentes(user,new JFrame(),true).setVisible(true);
     }//GEN-LAST:event_item2ActionPerformed
 
     /**
