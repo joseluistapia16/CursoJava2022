@@ -143,6 +143,9 @@
           <Events>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaMousePressed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="GestionUsuarios_tabla"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

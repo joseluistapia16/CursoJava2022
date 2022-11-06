@@ -21,7 +21,7 @@ import java.util.List;
  * @author Usuario
  */
 public class UsersFiles implements ImplUsuario{
-    String ruta = "C:\\Users\\sopor\\OneDrive\\Documentos\\NetBeansProjects\\Curso2022_2\\usuarios.json";
+    String ruta = "C:\\Users\\geova\\OneDrive\\Escritorio\\CursoJava2022\\usuarios.json";
     List<Usuario> lista;
     Procesos proc;
     public UsersFiles() {
