@@ -159,7 +159,7 @@ public class CrudDocente implements ImplDocente {
                         rs.getInt("horas"),
                         rs.getString("gestoria"),
                         rs.getString("estado"),
-                        rs.getString("imaagen")
+                        rs.getString("imagen")
                 );
             }
         } catch (SQLException ex) {
