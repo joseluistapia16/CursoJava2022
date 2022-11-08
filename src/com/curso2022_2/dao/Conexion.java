@@ -23,7 +23,7 @@ public class Conexion {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             var path = "jdbc:mysql://localhost:3306/" + base;
-            conect = DriverManager.getConnection(path, "root", "ROOT");
+            conect = DriverManager.getConnection(path, "root", "1234");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
