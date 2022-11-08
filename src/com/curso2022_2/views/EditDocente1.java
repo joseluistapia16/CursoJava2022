@@ -18,28 +18,32 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Usuario
  */
-public class NewDocente extends javax.swing.JDialog {
+public class EditDocente1 extends javax.swing.JDialog {
 
     CrudDocente crud = new CrudDocente();
     Usuario user1 = null;
     String rutaImagen = "";
+    Docente objDC = null;
+    String opc[] = { "PPP", "VINCULACION","DESARROLLO", "INGLES", "TITULACION" };
 
     /**
      * Creates new form NewDocente
      */
-    public NewDocente(java.awt.Frame parent, boolean modal) {
+    public EditDocente1(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         imagenVacia();
     }
 
-    public NewDocente(Usuario obj, java.awt.Frame parent, boolean modal) {
+    public EditDocente1(Usuario obj, Docente objc, java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        imagenVacia();
+        objDC = objc;
+        // imagenVacia();
         user1 = obj;
+        dataCharge(objc);
         System.out.println("user 1 " + user1.getData());
     }
 
@@ -67,8 +71,8 @@ public class NewDocente extends javax.swing.JDialog {
         sueldo = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         foto = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
+        actu = new javax.swing.JToggleButton();
+        eliminar = new javax.swing.JToggleButton();
         jToggleButton3 = new javax.swing.JToggleButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -94,6 +98,7 @@ public class NewDocente extends javax.swing.JDialog {
         jLabel8.setText("Gestoria");
 
         cedula.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        cedula.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         cedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 cedulaKeyTyped(evt);
@@ -101,6 +106,7 @@ public class NewDocente extends javax.swing.JDialog {
         });
 
         horas.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        horas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         horas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 horasKeyTyped(evt);
@@ -108,15 +114,18 @@ public class NewDocente extends javax.swing.JDialog {
         });
 
         apellidos.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        apellidos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         nombres.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        nombres.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        gestoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PPP", "VINCULACION","DESARROLLO", "INGLES", "TITULACION" }));
+        gestoria.setModel(new javax.swing.DefaultComboBoxModel<>(opc));
 
         lb4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lb4.setText("Horas");
 
         sueldo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        sueldo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         sueldo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 sueldoKeyTyped(evt);
@@ -207,19 +216,19 @@ public class NewDocente extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jToggleButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jToggleButton1.setText("Grabar");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        actu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        actu.setText("Actualizar");
+        actu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                actuActionPerformed(evt);
             }
         });
 
-        jToggleButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jToggleButton2.setText("Nuevo");
-        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+        eliminar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        eliminar.setText("Eliminar");
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton2ActionPerformed(evt);
+                eliminarActionPerformed(evt);
             }
         });
 
@@ -253,9 +262,9 @@ public class NewDocente extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(actu, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(66, 66, 66)
-                        .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(63, 63, 63)
                         .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -281,8 +290,8 @@ public class NewDocente extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(actu, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 26, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -317,15 +326,9 @@ public class NewDocente extends javax.swing.JDialog {
         this.setVisible(false);
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-       var val = getValidate();
-       if("".equals(val)){
-            save();
-       }else{
-           JOptionPane.showMessageDialog(null,"Campos invalidos!\n"+ val);
-       }
-       
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    private void actuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actuActionPerformed
+        save();
+    }//GEN-LAST:event_actuActionPerformed
 
     private void horasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_horasKeyTyped
         var car = evt.getKeyChar();
@@ -347,26 +350,18 @@ public class NewDocente extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_sueldoKeyTyped
 
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-        reset();
-    }//GEN-LAST:event_jToggleButton2ActionPerformed
-
-    private void reset() {
-        cedula.setText(null);
-        nombres.setText(null);
-        apellidos.setText(null);
-        sueldo.setText(null);
-        horas.setText(null);
-        imagenVacia();
-        gestoria.setSelectedIndex(0);
-
-    }
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+      var res = crud.delete(objDC.getCedula());
+        JOptionPane.showMessageDialog(null, res);
+        actu.setEnabled(false);
+        eliminar.setEnabled(false);
+    }//GEN-LAST:event_eliminarActionPerformed
 
     private void save() {
         var numero = sueldo.getText();
         var horas1 = horas.getText();
         if (numero == null || "".equals(numero) || numero.trim().length() == 0) {
-            numero = "0";
+            numero = "0.0";
             sueldo.setText(numero);
         }
         if (horas1 == null || "".equals(horas1) || horas1.trim().length() == 0) {
@@ -377,10 +372,11 @@ public class NewDocente extends javax.swing.JDialog {
         var ges = "" + gestoria.getSelectedItem();
         System.out.println("imagen ruta " + ruta + " combo " + ges);
         var obj = new Docente(cedula.getText(), user1.getUsuario(), nombres.getText(), apellidos.getText(),
-                Double.parseDouble(numero + ".0"), Integer.parseInt(horas1), ges, "A", ruta);
+                Double.parseDouble(numero),
+                Integer.parseInt(horas1), ges, "A", ruta);
 
         System.out.println("obj " + obj.getData());
-        var msg = crud.create(obj);
+        var msg = crud.update(obj);
         JOptionPane.showMessageDialog(null, msg);
     }
 
@@ -402,24 +398,21 @@ public class NewDocente extends javax.swing.JDialog {
         }
     }
 
-    private String getValidate() {
-        var msg = "";
-        if (cedula.getText().trim().length() < 10) {
-            msg = msg + "Cedula\n";
+    private void chargeImage(String path) {
+        var fil = path;
+        if (path.trim().length()<1){
+            imagenVacia();
+        }else{
+        foto.setIcon(new ImageIcon(fil));
+        ImageIcon icon = new ImageIcon(fil);
+        Image img = icon.getImage();
+        Image nueva = img.getScaledInstance(450, 360, Image.SCALE_SMOOTH);
+        ImageIcon newIcon = new ImageIcon(nueva);
+        foto.setIcon(newIcon);
+        rutaImagen=path;
+        System.out.println("Ruta " + rutaImagen);
         }
-        if (nombres.getText().trim().length() < 3) {
-            msg = msg + "Nombre\n";
-        }
-        if (apellidos.getText().trim().length() < 3) {
-            msg = msg + "Apellido\n";
-        }
-        if (sueldo.getText().trim().length() < 1) {
-            msg = msg + "Sueldo\n";
-        }
-        if (horas.getText().trim().length() < 1) {
-            msg = msg + "Horas\n";
-        }
-        return msg;
+
     }
 
     public void imagenVacia() {
@@ -433,6 +426,32 @@ public class NewDocente extends javax.swing.JDialog {
         ImageIcon newIcono = new ImageIcon(newimg);
         foto.setIcon(newIcono);
         rutaImagen = fil;
+    }
+
+    private void dataCharge(Docente obj) {
+        cedula.setText(obj.getCedula());
+        cedula.setEditable(false);
+        nombres.setText(obj.getNombre());
+        apellidos.setText(obj.getApellido());
+        sueldo.setText(obj.getSueldo().toString());
+        horas.setText(""+obj.getHoras());
+        rutaImagen = obj.getImagen();   
+        var pos= getOpc(obj.getGestoria());
+        gestoria.setSelectedIndex(pos);
+        chargeImage(rutaImagen);
+    }
+    
+    private int getOpc(String cmb){
+        var pos =0;
+        for (int i = 0; i < opc.length; i++) {
+            if (cmb.equals(opc[i])) {
+                pos = i;
+                break;
+            }
+        }
+        
+        return pos;
+        
     }
 
     /**
@@ -452,20 +471,21 @@ public class NewDocente extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditDocente1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditDocente1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditDocente1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditDocente1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                NewDocente dialog = new NewDocente(new javax.swing.JFrame(), true);
+                EditDocente1 dialog = new EditDocente1(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -478,8 +498,10 @@ public class NewDocente extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton actu;
     private javax.swing.JTextField apellidos;
     private javax.swing.JTextField cedula;
+    private javax.swing.JToggleButton eliminar;
     private javax.swing.JLabel foto;
     private javax.swing.JComboBox<String> gestoria;
     private javax.swing.JTextField horas;
@@ -490,8 +512,6 @@ public class NewDocente extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JLabel lb10;
     private javax.swing.JLabel lb2;

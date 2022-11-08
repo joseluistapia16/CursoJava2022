@@ -5,6 +5,7 @@
 package com.curso2022_2.views;
 
 import com.curso2020_2.views.components.Tables;
+import com.curso2022_2.dao.CrudDocente;
 import com.curso2022_2.domain.Docente;
 import com.curso2022_2.domain.Usuario;
 import java.text.MessageFormat;
@@ -19,8 +20,10 @@ import javax.swing.JTable;
  * @author Usuario
  */
 public class GestionDocentes extends javax.swing.JDialog {
-    Usuario user1=null;
+
+    Usuario user1 = null;
     List<Docente> lista = null;
+    CrudDocente crud = null;
 
     /**
      * Creates new form GestionUsuarios
@@ -29,18 +32,20 @@ public class GestionDocentes extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        lista = new ArrayList<>();
-        //Tables.chargeTable(lista, tabla);
+        crud = new CrudDocente();
+        lista = crud.getAll();
+        Tables.chargeDocenteTable(lista, tabla);
     }
 
-    public GestionDocentes(Usuario user,java.awt.Frame parent, boolean modal) {
+    public GestionDocentes(Usuario user, java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        user1=user;
+        user1 = user;
+        crud = new CrudDocente();
         System.out.println(user1.getData());
         setLocationRelativeTo(null);
-        lista = new ArrayList<>();
-        //Tables.chargeTable(lista, tabla);
+        lista = crud.getAll();
+        Tables.chargeDocenteTable(lista, tabla);
     }
 
     /**
@@ -185,13 +190,13 @@ public class GestionDocentes extends javax.swing.JDialog {
         try {
             if (evt.getClickCount() == 2) {
                 fila = tabla.getSelectedRow();
-//                var obj = getObject("" + tabla.getValueAt(fila, 0), lista);
-//                if (obj != null) {
-//                    var ob = new EditUser(new JFrame(), true, obj);
-//                    ob.setVisible(true);
-//                   
-//                    //Tables.chargeTable(lista, tabla);
-//                }
+                var obj = getObject("" + tabla.getValueAt(fila, 0), lista);
+                if (obj != null) {
+                    var ob = new EditDocente1(user1,obj,new JFrame(), true);
+                    ob.setVisible(true);
+                    lista=crud.getAll();
+                    Tables.chargeDocenteTable(lista, tabla);
+                }
 
                 //var val = tabla.getValueAt(fila, 0);
                 //JOptionPane.showMessageDialog(null, obj.getData());
@@ -218,7 +223,7 @@ public class GestionDocentes extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new NewDocente(user1,new JFrame(), true).setVisible(true);
+        new NewDocente(user1, new JFrame(), true).setVisible(true);
         //lista=crud.getAll();
         Tables.chargeDocenteTable(lista, tabla);
     }//GEN-LAST:event_jButton1ActionPerformed

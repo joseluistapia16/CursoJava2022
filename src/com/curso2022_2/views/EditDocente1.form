@@ -27,9 +27,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jToggleButton1" min="-2" pref="155" max="-2" attributes="0"/>
+                      <Component id="actu" min="-2" pref="155" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                      <Component id="jToggleButton2" min="-2" pref="155" max="-2" attributes="0"/>
+                      <Component id="eliminar" min="-2" pref="155" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                       <Component id="jToggleButton3" min="-2" pref="155" max="-2" attributes="0"/>
                   </Group>
@@ -63,8 +63,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jToggleButton1" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
-                          <Component id="jToggleButton2" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
+                          <Component id="actu" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
+                          <Component id="eliminar" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
                           <Component id="jToggleButton3" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="26" max="32767" attributes="0"/>
@@ -218,6 +218,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="24" style="0"/>
             </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
           <Events>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cedulaKeyTyped"/>
@@ -228,6 +229,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="24" style="0"/>
             </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
           <Events>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="horasKeyTyped"/>
@@ -238,6 +240,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="24" style="0"/>
             </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="nombres">
@@ -245,12 +248,13 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="24" style="0"/>
             </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="gestoria">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;PPP&quot;, &quot;VINCULACION&quot;,&quot;DESARROLLO&quot;, &quot;INGLES&quot;, &quot;TITULACION&quot; })" type="code"/>
+              <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(opc)" type="code"/>
             </Property>
           </Properties>
           <AuxValues>
@@ -270,6 +274,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="24" style="0"/>
             </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
           <Events>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="sueldoKeyTyped"/>
@@ -318,26 +323,26 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JToggleButton" name="jToggleButton1">
+    <Component class="javax.swing.JToggleButton" name="actu">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Grabar"/>
+        <Property name="text" type="java.lang.String" value="Actualizar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actuActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="jToggleButton2">
+    <Component class="javax.swing.JToggleButton" name="eliminar">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Nuevo"/>
+        <Property name="text" type="java.lang.String" value="Eliminar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="jToggleButton3">
